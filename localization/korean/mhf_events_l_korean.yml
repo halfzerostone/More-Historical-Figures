@@ -1,0 +1,5 @@
+﻿l_korean:
+  mhf_events.2.t: "수권법 제정!"
+  mhf_events.2.d: "1933년 3월 23일, [SCOPE.sCountry('mhf_enabling_act_country_scope').GetName]에서 수권법이 통과되어 정부에 막강한 권한이 부여되었습니다."
+  mhf_events.2.f: "이 법은 독일 역사에 중대한 전환점이 되었습니다."
+  mhf_events.2.a: "새로운 시대의 시작이다."

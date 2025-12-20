@@ -9,3 +9,8 @@
   mhf_events.1.f: "왜 그러신 겁니까?\n독일인들을 위해 싸워야 했소.\n\n그렇군요..."
   mhf_events.1.a: "그는 독일인의 정신을 대변한다."
   mhf_events.1.b: "그는 죗값을 치러야 한다."
+  mhf_events.2.t: "수권법"
+  mhf_events.2.d: "1933년 봄, [SCOPE.sCharacter('hitler_scope').GetFullName]는 [SCOPE.sCountry('country_scope').GetName]의 위난을 극복하기 위한 수권법을 제정하려 한다. 이 법은 의회의 권한을 [SCOPE.sCharacter('hitler_scope').GetFullName]에게 이양하여, 그가 법률을 제정하고 국가를 통치할 수 있도록 허용한다."
+  mhf_events.2.f: "민족과 국가의 위난을 제거하기 위한 법률\n독일 국가의회는 다음과 같은 법률을 제정한다. 이로써 참사원의 승인을 선언하며, 이 법률의 하위 항들로 인해 헌법 수정의 요건을 채운 것으로 확실하게 인정받는다..."
+  mhf_events.2.a: "[SCOPE.sCountry('country_scope').GetName]을 위한 새로운 시대의 시작이다."
+  mhf_events.2.b: "이것은 독재로 가는 길이다."
