@@ -1,0 +1,12 @@
+on_monthly_pulse_country = {
+    on_actions = {
+		on_monthly_custom_event
+	}
+}
+
+on_monthly_custom_event = {
+	random_events = {
+		chance_to_happen = 100
+		1 = mhf_events.1
+	}
+}

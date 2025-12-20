@@ -1,0 +1,70 @@
+﻿namespace = mhf_events
+
+# Adolf Hitler 등장 이벤트 예시
+mhf_events.1 = {
+    type = country_event
+    placement = root
+
+    gui_window = event_window_1char_tabloid
+    left_icon = scope:adolf_hitler_scope
+
+    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+    on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+    icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+    title = mhf_events.1.t
+    desc = mhf_events.1.d
+    flavor = mhf_events.1.f
+
+    duration = 3
+
+	trigger = {
+		# 예시 트리거: 1923년 11월 8일 이후, 독일, agitator 슬롯 1개 이상
+		game_date >= 1923.11.8
+		OR = {
+			c:GER ?= this
+			c:PRU ?= this
+		}
+		empty_agitator_slots >= 1
+	}
+
+    immediate = {
+        # 아돌프 히틀러 agitator 생성 및 스코프 부여
+        create_character = {
+            template = adolf_hitler_character_template
+			on_created = {
+				place_character_in_void = 3
+				add_character_role = politician
+				set_variable = hitler_var
+			}
+            save_scope_as = hitler_scope
+        }
+		random_character_in_void = {
+			limit = {
+				has_variable = hitler_var
+			}
+			save_scope_as = hitler_scope
+		}
+    }
+    option = {
+		name = mhf_events.1.a
+		default_option = yes
+		ai_chance = {
+			base = 75
+		}
+        # 히틀러가 소시민(ig_petty_bourgeoisie) 지도자가 됨
+		scope:hitler_scope = {
+			free_character_from_void = yes
+			set_as_interest_group_leader = yes
+    }}
+    option = {
+		name = mhf_events.1.b
+		ai_chance = {
+			base = 25
+		}
+		scope:hitler_scope = {
+			kill_character = yes
+		}
+    }
+}

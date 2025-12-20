@@ -1,0 +1,19 @@
+﻿adolf_hitler_character_template = {
+    first_name = Adolf
+    last_name = Hitler
+    historical = yes
+    culture = cu:south_german
+    religion = rel:protestant
+    interest_group = ig_petty_bourgeoisie # 실제로는 2차대전 이후 등장, 예시용
+    is_agitator = yes
+    female = no
+    birth_date = 1889.4.20
+    dna = dna_adolf_hitler
+    ideology = ideology_fascist
+    traits = {
+        ambitious
+    }
+    on_created = {
+        set_global_variable = hitler_is_alive_global_var
+    }
+}
