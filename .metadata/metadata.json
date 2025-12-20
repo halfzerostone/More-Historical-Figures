@@ -1,0 +1,12 @@
+{
+  "name" : "More Historical Figures",
+	"id" : "more_historical_figures",
+  "version" : "1.0",
+  "supported_game_version" : "1.12.*",
+  "short_description" : "Adds more historical figures to the game.",
+  "tags" : [],
+  "relationships" : [],
+  "game_custom_data" : {
+    "multiplayer_synchronized" : true
+  }
+}
