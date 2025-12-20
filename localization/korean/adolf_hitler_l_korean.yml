@@ -6,7 +6,7 @@
   Hitler: "히틀러"
   mhf_events.1.t: "맥주홀 폭동!"
   mhf_events.1.d: "독일 11월 혁명 기념식 날, [SCOPE.sCharacter('hitler_scope').GetFullName]가 이끄는 나치당의 돌격대가 뮌헨의 맥주홀에서 쿠데타를 시도했다. 이 폭동은 실패로 끝났지만, [SCOPE.sCharacter('hitler_scope').GetFullName]의 명성은 크게 높아졌다."
-  mhf_events.1.f: "왜 그러신 겁니까?\n독일인들을 위해 싸워야 했소.\n\n그렇군요..."
+  mhf_events.1.f: "왜 그러신 겁니까?\n누군가는 독일인을 위해 나서야 했소.\n\n그렇군요..."
   mhf_events.1.a: "그는 독일인의 정신을 대변한다."
   mhf_events.1.b: "그는 죗값을 치러야 한다."
   mhf_events.2.t: "수권법"

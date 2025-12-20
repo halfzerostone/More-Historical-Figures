@@ -1,0 +1,4 @@
+customize_german_reich = {
+    set_country_custom_name = GER_REICH
+	
+}
