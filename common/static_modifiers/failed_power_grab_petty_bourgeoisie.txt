@@ -1,10 +1,5 @@
 failed_power_grab_petty_bourgeoisie = {
-    icon = generic_political_crisis
-    modifier = {
-        interest_group = ig_petty_bourgeoisie
-        political_strength_mult = -0.9
-    }
-    duration = 3650 # 10년(365*10)
-    desc = failed_power_grab_petty_bourgeoisie_desc
-    name = failed_power_grab_petty_bourgeoisie_name
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_negative.dds
+   interest_group_pol_str_mult = -0.9
+    
 }

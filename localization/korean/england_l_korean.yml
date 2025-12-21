@@ -1,0 +1,9 @@
+﻿l_korean:
+  mhf_events.4.t: "돌아온 탕아"
+  mhf_events.4.d: "[SCOPE.sCountry('usa_scope').GetName]는 [SCOPE.sCountry('mexico_scope').GetName]와의 길어진 영토 분쟁으로 인해 여러 문제를 겪고 있었다. 그에 따라 [SCOPE.sCountry('usa_scope').GetName]엔 다시 한번 [SCOPE.sCountry('uk_scope').GetName]의 품으로 돌아가고자 하는 여론이 형성되기 시작하였다."
+  mhf_events.4.a: "잃었던 자식이 돌아오고 있다."
+  mhf_events.4.b: "그들에게 도움을 주어야 한다."
+  mhf_events.4.c: "[SCOPE.sCountry('usa_scope').GetName]는 스스로의 길을 가야 한다."
+  treaty_name_us_uk: "[SCOPE.sCountry('usa_scope').GetName] - [SCOPE.sCountry('uk_scope').GetName] 연합 조약"
+  mhf_events.4.c.d: "[SCOPE.sCountry('usa_scope').GetName]의 요청을 무시합니다."
+  mhf_events.4.b.d: "[SCOPE.sCountry('usa_scope').GetName]과 동맹을 결성합니다"

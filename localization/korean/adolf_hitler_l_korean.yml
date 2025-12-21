@@ -14,3 +14,7 @@
   mhf_events.2.f: "민족과 국가의 위난을 제거하기 위한 법률\n독일 국가의회는 다음과 같은 법률을 제정한다. 이로써 참사원의 승인을 선언하며, 이 법률의 하위 항들로 인해 헌법 수정의 요건을 채운 것으로 확실하게 인정받는다..."
   mhf_events.2.a: "[SCOPE.sCountry('country_scope').GetName]을 위한 새로운 시대의 시작이다."
   mhf_events.2.b: "이것은 독재로 가는 길이다."
+  mhf_events.3.t: "안슐루스"
+  mhf_events.3.d: "1938년 3월, [SCOPE.sCharacter('hitler_scope').GetFullName]는 [SCOPE.sCountry('country_scope').GetName]와 [SCOPE.sCountry('austria_scope').GetName]은 같은 독일 민족의 국가라고 주목하며 [SCOPE.sCountry('austria_scope').GetName]와 합병을 추구한다."
+  mhf_events.3.a: "누가 감히 [SCOPE.sCountry('austria_scope').GetName]가 [SCOPE.sCountry('country_scope').GetName]이 아니라 할 수 있겠는가!"
+  mhf_events.3.b: "이것은 허황된 생각이다."

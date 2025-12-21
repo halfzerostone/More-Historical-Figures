@@ -1,12 +1,11 @@
 hitler_legitimacy_boost = {
     icon =  gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-    
-        country_legitimacy_add = 100
+    country_legitimacy_base_add = 100
     
 }
 
-reduce_all_ig_power_except_petty_bourgeoisie = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_negative.dds
-    interest_group_pol_str_mult = -0.9
-    interest_group_approval_add = -2 
+pb_pol_bonus = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+    interest_group_pol_str_mult = 10
+    interest_group_approval_add = 20
 }

@@ -7,7 +7,7 @@ mhf_events.1 = {
     placement = root
 
     gui_window = event_window_1char_tabloid
-    left_icon = scope:adolf_hitler_scope
+    left_icon = scope:hitler_scope
 
     on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
     on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
@@ -21,6 +21,7 @@ mhf_events.1 = {
     duration = 3
 
 	trigger = {
+		NOT = { has_variable = mhf_events_1_fired }
 		# 예시 트리거: 1923년 11월 8일 이후, 독일, agitator 슬롯 1개 이상
 		game_date >= 1923.11.8
 		OR = {
@@ -32,6 +33,7 @@ mhf_events.1 = {
 
     immediate = {
         # 아돌프 히틀러 agitator 생성 및 스코프 부여
+		   set_variable = mhf_events_1_fired
         create_character = {
             template = adolf_hitler_character_template
 			on_created = {
@@ -71,13 +73,13 @@ mhf_events.1 = {
 }
 
 	# 수권법 제정 이벤트
-	mhf_events.2 = {
+mhf_events.2 = {
 		type = country_event
 		placement = root
 
-		gui_window = event_window_1char_tabloid
-		left_icon = scope:mhf_enabling_act_country_scope
-
+		event_image = {
+			video = "unspecific_politicians_arguing"
+		}
 		on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 		on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
 
@@ -90,14 +92,22 @@ mhf_events.1 = {
 		duration = 3
 
 		trigger = {
+			NOT = { has_variable = mhf_events_2_fired }
+			ig:ig_petty_bourgeoisie ?={
+				leader = {
+					has_variable = hitler_var
+				}
+			}
 			game_date >= 1933.3.23
 			OR = {
 				c:GER ?= this
 				c:PRU ?= this
 			}
+			
 		}
 
 		immediate = {
+			set_variable = mhf_events_2_fired
 			root = {
 				save_scope_as = country_scope
 			}
@@ -124,22 +134,13 @@ mhf_events.1 = {
 				days = 3650
 				is_decaying = yes
 					}
-			add_modifier = { # 현재 전체에 90% 디버프가 걸림 - > 소시민만 제외할 필요 O 아마도 개별로 90% 거는걸 반복해야 할듯 
-				name = reduce_all_ig_power_except_petty_bourgeoisie
-				days = 3650
-				is_decaying = yes
+			ig:ig_petty_bourgeoisie ?={
+				add_modifier = {
+					name = pb_pol_bonus
+					days = 3650
+					is_decaying = yes
 					}
-			random_interest_group = {
-				ruler = {
-					has_variable = hitler_var
 				}
-				save_scope_as = pb_scope
-			}
-			pb_scope = {
-				remove_modifier = {
-					name = reduce_all_ig_power_except_petty_bourgeoisie
-				}
-			}
 
 			scope:hitler_scope = {
 				set_character_as_ruler = yes
@@ -148,12 +149,193 @@ mhf_events.1 = {
 		option = {
 			name = mhf_events.2.b
 			ai_chance = { base = 20 }
-			scope:country_scope = {
-				add_character_modifier = {
-					modifier = failed_power_grab_petty_bourgeoisie
-					duration = 3650
-					is_decaying = yes 
+			
+			ig:ig_petty_bourgeoisie ?={
+				add_modifier = {
+					name = failed_power_grab_petty_bourgeoisie
+					days = 3650
+					is_decaying = yes
+					}
 				}
+		}
+	}
+
+	mhf_events.3 = {
+	type = country_event
+	placement = root
+
+	event_image = {
+		video = "ep1_transfer_of_authority"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+	title = mhf_events.3.t
+	desc = mhf_events.3.d
+	flavor = mhf_events.3.f
+
+	duration = 3
+
+	trigger = {
+		game_date >= 1933.1.30
+		NOT = { has_variable = mhf_events_3_fired }
+		OR = {
+			c:GER ?= this
+			c:PRU ?= this
+		}
+		ig:ig_petty_bourgeoisie ?={
+			leader = {
+				has_variable = hitler_var
+			}
+		}
+		exists = c:AUS
+	}
+
+	immediate = {
+		set_variable = mhf_events_3_fired
+		root = {
+			save_scope_as = country_scope
+		}
+		c:AUS = {
+			save_scope_as = austria_scope
+		}
+		random_scope_character = {
+			limit = {
+				has_variable = hitler_var
+			}
+			save_scope_as = hitler_scope
+		}
+	}
+
+	option = {
+		name = mhf_events.3.a
+		default_option = yes
+		ai_chance = { base = 20 }
+		
+			random_list = {
+				60 ={
+					root = {
+						annex = c:AUS
+					}
+				}
+				40= {
+					root = {
+						change_relations = {
+							country = c:AUS
+							value = -100
+						}
+					}
+					s:STATE_BOHEMIA = {
+						add_claim = ROOT
+					}
+					s:STATE_AUSTRIA = {
+						add_claim = ROOT
+					}
+					s:STATE_STYRIA = {
+						add_claim = ROOT
+					}
+					s:STATE_MORAVIA = {
+						add_claim = ROOT
+					}
+					s:STATE_TYROL = {
+						add_claim = ROOT
+					}
+				}
+			}
+	}
+
+	option = {
+		name = mhf_events.3.b
+		ai_chance = { base = 80 }
+		add_radicals = {
+			culture = cu:south_german
+			culture = cu:north_german
+			value = {
+				add=huge_radicals
 			}
 		}
 	}
+
+	
+}
+
+mhf_events.4 = {
+	type = country_event
+	placement = root
+
+	event_image = {
+		video = "votp_monarch_holding_court"
+	}
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_B"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+	title = mhf_events.4.t
+	desc = mhf_events.4.d
+
+	duration = 3
+	trigger = {
+		c:GBR ?= this
+			c:USA = {
+				relations_with = {
+					target = root
+					value >= 30
+				}
+			}
+		
+	}
+
+	immediate = {
+		root = {
+			save_scope_as = uk_scope
+		c:USA = {
+			save_scope_as = usa_scope
+		}
+		c:MEX = {
+			save_scope_as = mexico_scope
+		}
+	}
+	}
+
+	option = { #usa annex
+		name = mhf_events.4.a
+		ai_chance = { base = 0 }
+		root = {
+			annex = c:USA
+		}
+	}
+
+	option = { #usa ally
+		name = mhf_events.4.b
+		desc = mhf_events.4.b.d
+		default_option = yes
+		ai_chance = { base = 20 }
+		desc = mhf_events.4.b.d
+		create_treaty = {
+			name = treaty_name_us_uk
+			
+				first_country = c:USA
+				second_country = c:GBR
+
+				is_draft = no 
+				entered_into_force_on = 1815.10.15
+				binding_period = { years = 10} 
+				articles_to_create = {
+					{
+					article =  alliance
+					}
+				}
+			}
+		
+			
+		}
+	
+	option = { #usa neutral
+		name = mhf_events.4.c
+		ai_chance = { base = 80 }
+	}
+}
