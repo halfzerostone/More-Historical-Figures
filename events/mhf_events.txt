@@ -175,7 +175,6 @@ mhf_events.2 = {
 
 	title = mhf_events.3.t
 	desc = mhf_events.3.d
-	flavor = mhf_events.3.f
 
 	duration = 3
 
@@ -281,10 +280,7 @@ mhf_events.4 = {
 	trigger = {
 		c:GBR ?= this
 			c:USA = {
-				relations_with = {
-					target = root
-					value >= 30
-				}
+				relations:root > 30 
 			}
 		
 	}
@@ -311,10 +307,9 @@ mhf_events.4 = {
 
 	option = { #usa ally
 		name = mhf_events.4.b
-		desc = mhf_events.4.b.d
+		custom_tooltip = mhf_events.4.b.d
 		default_option = yes
 		ai_chance = { base = 20 }
-		desc = mhf_events.4.b.d
 		create_treaty = {
 			name = treaty_name_us_uk
 			
@@ -338,4 +333,151 @@ mhf_events.4 = {
 		name = mhf_events.4.c
 		ai_chance = { base = 80 }
 	}
+}
+mhf_events.5 = {
+	type = country_event
+	placement = root
+
+	event_image = {
+		video = "ep1_power_blocs"
+	}
+
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+	title = mhf_events.5.t
+	desc = mhf_events.5.d
+	flavor = mhf_events.5.f
+
+	duration = 3
+
+	trigger = {
+		c:GBR ?= this
+		game_date >= 1836.1.1
+		root = {
+			ruler ?= {
+				has_template = gbr_queen_victoria_template
+			}
+		}
+	}
+
+	immediate = {
+		ruler = {
+			save_scope_as = victoria_scope
+		}
+		c:GBR = {
+			save_scope_as = uk_scope
+		}
+	}
+
+	option = {
+		name = mhf_events.5.a
+		custom_tooltip = mhf_events.5.a.d
+		default_option = yes
+		ai_chance = { base = 5 }
+		set_global_variable= {
+			name = federation_support
+			value = 1
+		}
+		trigger_event = { 
+			id = mhf_events.5f 
+			days=7
+		}
+		trigger_event = { 
+			id = mhf_events.5s 
+			days=14
+		}
+		# 옵션 효과 작성
+	}
+
+	option = {
+		name = mhf_events.5.b
+		custom_tooltip = mhf_events.5.b.d
+		ai_chance = { base = 95 }
+		add_loyalists = {
+			culture = cu:british
+			value = {
+				add=massive_radicals
+			}
+		}
+	}
+}
+
+mhf_events.5f = {
+	type = country_event
+	placement = root
+
+	event_image = {
+		video = "ep1_printing_press"
+	}
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+	title = mhf_events.5_1.t
+	desc = mhf_events.5_1.d
+
+	duration = 3
+	trigger = {
+		c:GBR ?= this
+		
+		has_global_variable = {
+			name = federation_event
+			value = 1
+		}
+	}
+	immediate = {
+		root = {
+			save_scope_as = uk_scope
+		}
+	}
+
+	option = {
+		name = mhf_events.5_1.a
+		default_option = yes
+		ai_chance = { base = 50 }
+		# 옵션 효과 작성
+		add_global_variable {
+			name = federation_support
+			value = 2
+		}
+		scope:country_scope = {
+           add_modifier = {
+			   name = "heavy_debt_fed"
+			   days = 3650
+		}}
+	}
+	option = {
+		name = mhf_events.5_1.b
+		ai_chance = { base = 50 }
+		# 옵션 효과 작성
+		add_global_variable {
+			name = federation_support
+			value = 1
+		}
+		scope:country_scope = {
+           add_modifier = {
+			   name = "light_debt_fed"
+			   days = 3650
+		}}
+	}
+	option = {
+		name = mhf_events.5_1.c
+		ai_chance = { base = 0 }
+		# 옵션 효과 작성
+		add_global_variable {
+			name = federation_support
+			value = 0
+		}
+		scope:country_scope = {
+
+		}
+	}
+}
+
+mhf_events.5s = {
+
 }

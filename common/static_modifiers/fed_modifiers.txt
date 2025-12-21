@@ -1,0 +1,8 @@
+heavy_debt_fed = {
+    icon = gfx/interface/icons/timed_modifier_icons/coins_negative.dds
+    weekly_income_add = -10000
+}
+light_debt_fed = {
+	icon = gfx/interface/icons/timed_modifier_icons/coins_negative.dds
+	weekly_income_add = -5000
+}
