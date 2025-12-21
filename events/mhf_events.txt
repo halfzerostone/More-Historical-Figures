@@ -361,6 +361,7 @@ mhf_events.5 = {
 				has_template = gbr_queen_victoria_template
 			}
 		}
+		NOT = { has_variable = mhf_events_5_fired }
 	}
 
 	immediate = {
@@ -370,6 +371,7 @@ mhf_events.5 = {
 		c:GBR = {
 			save_scope_as = uk_scope
 		}
+		set_variable = mhf_events_5_fired
 	}
 
 	option = {
@@ -379,15 +381,31 @@ mhf_events.5 = {
 		ai_chance = { base = 5 }
 		set_global_variable= {
 			name = federation_support
-			value = 1
+			value =0
+		}
+		add_global_variable= {
+			name = federation_support
+			add =2 
 		}
 		trigger_event = { 
-			id = mhf_events.5f 
+			id = mhf_events.6
 			days=7
 		}
 		trigger_event = { 
-			id = mhf_events.5s 
+			id = mhf_events.7
 			days=14
+		}
+		trigger_event = { 
+			id = mhf_events.8
+			days=21
+		}
+		trigger_event = { 
+			id = mhf_events.9
+			days=28
+		}
+		trigger_event = { 
+			id = mhf_events.10
+			days=35
 		}
 		# 옵션 효과 작성
 	}
@@ -399,15 +417,18 @@ mhf_events.5 = {
 		add_loyalists = {
 			culture = cu:british
 			value = {
-				add=massive_radicals
+				add = very_large_radicals
 			}
 		}
 	}
 }
 
-mhf_events.5f = {
+mhf_events.6 = {
 	type = country_event
 	placement = root
+
+	title = mhf_events.5_1.t
+	desc = mhf_events.5_1.d
 
 	event_image = {
 		video = "ep1_printing_press"
@@ -417,67 +438,346 @@ mhf_events.5f = {
 
 	icon = "gfx/interface/icons/event_icons/event_scales.dds"
 
-	title = mhf_events.5_1.t
-	desc = mhf_events.5_1.d
 
-	duration = 3
-	trigger = {
-		c:GBR ?= this
-		
-		has_global_variable = {
-			name = federation_event
-			value = 1
-		}
-	}
+	duration = 1
 	immediate = {
-		root = {
+		c:GBR = {
 			save_scope_as = uk_scope
 		}
 	}
 
 	option = {
 		name = mhf_events.5_1.a
+		custom_tooltip = mhf_events.5_1_a_d
 		default_option = yes
 		ai_chance = { base = 50 }
 		# 옵션 효과 작성
-		add_global_variable {
+		change_global_variable= {
 			name = federation_support
-			value = 2
+			add = 2
 		}
-		scope:country_scope = {
+		scope:uk_scope = {
            add_modifier = {
-			   name = "heavy_debt_fed"
+			   name = heavy_debt_fed
 			   days = 3650
 		}}
 	}
 	option = {
 		name = mhf_events.5_1.b
+		custom_tooltip = mhf_events.5_1_b_d
 		ai_chance = { base = 50 }
 		# 옵션 효과 작성
-		add_global_variable {
+		change_global_variable ={
 			name = federation_support
-			value = 1
+			add = 1
 		}
-		scope:country_scope = {
+		scope:uk_scope = {
            add_modifier = {
-			   name = "light_debt_fed"
+			   name = light_debt_fed
 			   days = 3650
 		}}
 	}
 	option = {
 		name = mhf_events.5_1.c
+		custom_tooltip = mhf_events.5_1_c_d
 		ai_chance = { base = 0 }
 		# 옵션 효과 작성
-		add_global_variable {
-			name = federation_support
-			value = 0
-		}
-		scope:country_scope = {
+		scope:uk_scope = {
 
 		}
 	}
 }
 
-mhf_events.5s = {
+mhf_events.7 = {
+	type = country_event
+	placement = root
 
+	title = mhf_events.5_2.t
+	desc = mhf_events.5_2.d
+
+	event_image = {
+		video = "ip2_india_urban_scene"
+	}
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+
+	duration = 1
+	immediate = {
+		c:GBR = {
+			save_scope_as = uk_scope
+		}
+	}
+
+	option = {
+		name = mhf_events.5_2.a
+		custom_tooltip = mhf_events.5_2_a_d
+		default_option = yes
+		ai_chance = { base = 50 }
+		# 옵션 효과 작성
+		change_global_variable= {
+			name = federation_support
+			add = 2
+		}
+		scope:uk_scope = {
+           add_modifier = {
+			   name = heavy_bureaucracy_fed
+			   days = 3650
+		}}
+	}
+	option = {
+		name = mhf_events.5_2.b
+		custom_tooltip = mhf_events.5_2_b_d
+		ai_chance = { base = 50 }
+		# 옵션 효과 작성
+		add_global_variable ={
+			name = federation_support
+			add = 1
+		}
+		scope:uk_scope = {
+           add_modifier = {
+			   name = light_bureaucracy_fed
+			   days = 3650
+		}}
+	}
+	option = {
+		name = mhf_events.5_2.c
+		custom_tooltip = mhf_events.5_2_c_d
+		ai_chance = { base = 0 }
+		# 옵션 효과 작성
+		add_global_variable ={
+			name = federation_support
+			value = 0
+		}
+		scope:uk_scope = {
+
+		}
+	}
+}
+mhf_events.8 = {
+	type = country_event
+	placement = root
+
+	title = mhf_events.5_3.t
+	desc = mhf_events.5_3.d
+
+	event_image = {
+		video = "unspecific_signed_contract"
+	}
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+
+	duration = 1
+	immediate = {
+		c:GBR = {
+			save_scope_as = uk_scope
+		}
+	}
+
+	option = {
+		name = mhf_events.5_3.a
+		custom_tooltip = mhf_events.5_3_a_d
+		default_option = yes
+		ai_chance = { base = 50 }
+		# 옵션 효과 작성
+		change_global_variable= {
+			name = federation_support
+			add = 2
+		}
+		scope:uk_scope = {
+           add_modifier = {
+			   name = heavy_diplomacy_fed
+			   days = 3650
+		}}
+	}
+	option = {
+		name = mhf_events.5_3.b
+		custom_tooltip = mhf_events.5_3_b_d
+		ai_chance = { base = 50 }
+		# 옵션 효과 작성
+		add_global_variable ={
+			name = federation_support
+			add = 1
+		}
+		scope:uk_scope = {
+           add_modifier = {
+			   name = light_diplomacy_fed
+			   days = 3650
+		}}
+	}
+	option = {
+		name = mhf_events.5_3.c
+		custom_tooltip = mhf_events.5_3_c_d
+		ai_chance = { base = 0 }
+		# 옵션 효과 작성
+		add_global_variable ={
+			name = federation_support
+			value = 0
+		}
+		scope:uk_scope = {
+
+		}
+	}
+}
+mhf_events.9 = {
+	type = country_event
+	placement = root
+
+	title = mhf_events.5_4.t
+	desc = mhf_events.5_4.d
+
+	event_image = {
+		video = "ep1_transfer_of_authority"
+	}
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+
+	duration = 1
+	immediate = {
+		c:GBR = {
+			save_scope_as = uk_scope
+		}
+	}
+
+	option = {
+		name = mhf_events.5_4.a
+		custom_tooltip = mhf_events.5_4_a_d
+		default_option = yes
+		ai_chance = { base = 50 }
+		# 옵션 효과 작성
+		change_global_variable= {
+			name = federation_support
+			add = 2
+		}
+		scope:uk_scope = {
+           add_modifier = {
+			   name = heavy_military_fed
+			   days = 3650
+		}}
+	}
+	option = {
+		name = mhf_events.5_4.b
+		custom_tooltip = mhf_events.5_4_b_d
+		ai_chance = { base = 50 }
+		# 옵션 효과 작성
+		add_global_variable ={
+			name = federation_support
+			add = 1
+		}
+		scope:uk_scope = {
+           add_modifier = {
+			   name = light_military_fed
+			   days = 3650
+		}}
+	}
+	option = {
+		name = mhf_events.5_4.c
+		custom_tooltip = mhf_events.5_4_c_d
+		ai_chance = { base = 0 }
+		add_global_variable ={
+			name = federation_support
+			value = 0
+		}
+		scope:uk_scope = {
+
+		}
+	}
+}
+mhf_events.10 = {
+	type = country_event
+	placement = root
+
+	title = mhf_events.5_5.t
+	desc = mhf_events.5_5.d
+
+	event_image = {
+		video = "ip2_cross_cultural_festival"
+	}
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+
+	duration = 1
+	immediate = {
+		c:GBR = {
+			save_scope_as = uk_scope
+		}
+	}
+
+	option = {
+		name = mhf_events.5_5.a
+		custom_tooltip = mhf_events.5_5_a_d
+		default_option = yes
+		ai_chance = { base = 50 }
+		change_global_variable= {
+			name = federation_support
+			add = 2
+		}
+	}
+	option = {
+		name = mhf_events.5_5.b
+		custom_tooltip = mhf_events.5_5_b_d
+		ai_chance = { base = 50 }
+		add_global_variable ={
+			name = federation_support
+			add = 1
+		}
+		scope:uk_scope = {
+			activate_law = law_type:racial_segregation
+		}
+	}
+	option = {
+		name = mhf_events.5_5.c
+		custom_tooltip = mhf_events.5_5_c_d
+		ai_chance = { base = 0 }
+		scope:uk_scope = {
+			activate_law = law_type:law_multicultural	
+		}
+		add_global_variable ={
+			name = federation_support
+			value = 0
+		}
+	}
+}
+
+mhf_events_fed_done = {
+	type = country_event
+	placement = root
+
+	title = mhf_events.5_done.t
+	desc = mhf_events.5_done.d
+
+	event_image = {
+		video = "ep1_power_blocs"
+	}
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+}
+
+mhf_events_fed_failed = {
+	type = country_event
+	placement = root
+
+	title = mhf_events.5_fail.t
+	desc = mhf_events.5_fail.d
+
+	event_image = {
+		video = "ep1_power_blocs"
+	}
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
 }

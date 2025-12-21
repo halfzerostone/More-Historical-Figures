@@ -1,8 +1,36 @@
 heavy_debt_fed = {
     icon = gfx/interface/icons/timed_modifier_icons/coins_negative.dds
-    weekly_income_add = -10000
+    country_expenses_add = 5000
 }
 light_debt_fed = {
 	icon = gfx/interface/icons/timed_modifier_icons/coins_negative.dds
-	weekly_income_add = -5000
+	country_expenses_add = 2500
+}
+heavy_bureaucracy_fed = {
+	icon = gfx/interface/icons/timed_modifier_icons/bureaucracy_negative.dds
+	country_bureaucracy_mult = -0.1
+}
+light_bureaucracy_fed = {
+	icon = gfx/interface/icons/timed_modifier_icons/bureaucracy_negative.dds
+	country_bureaucracy_mult = -0.05
+}
+heavy_diplomacy_fed = {
+	icon = gfx/interface/icons/timed_modifier_icons/diplomacy_negative.dds
+	country_influence_multi = -0.15
+}
+light_diplomacy_fed = {
+	icon = gfx/interface/icons/timed_modifier_icons/diplomacy_negative.dds
+	country_influence_multi = -0.1
+}
+heavy_military_fed = {
+	icon = gfx/interface/icons/timed_modifier_icons/military_negative.dds
+	unit_army_defense_mult = -0.1
+	unit_army_offense_mult = -0.1
+	unit_morale_loss_mult = 0.1
+}
+light_military_fed = {
+	icon = gfx/interface/icons/timed_modifier_icons/military_negative.dds
+	unit_army_defense_mult = -0.05
+	unit_army_offense_mult = -0.05
+	unit_morale_loss_mult = 0.05
 }
