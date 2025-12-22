@@ -1012,6 +1012,110 @@ mhf_events.15 = {
 		root = {
 			save_scope_as = russia_scope
 		}
+		random_scope_character = {
+			limit = {
+				has_variable = lenin_var
+			}
+			save_scope_as = lenin_scope
+		}
+		create_country = {
+					tag = WRU
+					origin = root
+					
+					state = s:STATE_TRANS_BAIKAL.region_state:RUS
+				}
+				c:RUS = {
+					every_scope_state = {
+						limit = {
+							OR = {
+					state_region = s:STATE_ARKHANGELSK
+					state_region = s:STATE_VOLOGDA
+					state_region = s:STATE_NENETSIA
+					state_region = s:STATE_KURSK
+					state_region = s:STATE_NIZHNY_NOVGOROD
+					state_region = s:STATE_CHEBOKSARY
+					state_region = s:STATE_RYAZAN
+					state_region = s:STATE_SARATOV
+					state_region = s:STATE_TAMBOV
+					state_region = s:STATE_YAROSLAVL
+					state_region = s:STATE_CHERNIGOV
+					state_region = s:STATE_CREMEA
+					state_region = s:STATE_KHARKOV
+					state_region = s:STATE_KHERSON
+					state_region = s:STATE_KIEV
+					state_region = s:STATE_TAURIDA
+					state_region = s:STATE_VOLHYNIA
+					state_region = s:STATE_GRODNO
+					state_region = s:STATE_MINSK
+					state_region = s:STATE_MOLGILEV
+					state_region = s:STATE_VITEBSK
+					state_region = s:STATE_LUBLIN
+					state_region = s:STATE_POLOCK
+					state_region = s:STATE_WARSZAWA
+					state_region = s:STATE_BESSARABIA
+					state_region = s:STATE_DOBRUDJA
+					state_region = s:STATE_SOUTH_LIVONIA
+					state_region = s:STATE_LITHUANIA
+					state_region = s:STATE_VILNIUS
+					state_region = s:STATE_EAST_KARELIA
+					state_region = s:STATE_KOLA
+					state_region = s:STATE_ASTRAKHAN
+					state_region = s:STATE_KALMYKIA
+					state_region = s:STATE_ROSTOV
+					state_region = s:STATE_STAVROPOL
+					state_region = s:STATE_KARS
+					state_region = s:STATE_BAKU
+					state_region = s:STATE_DAGESTAN
+					state_region = s:STATE_KUBAN
+					state_region = s:STATE_NORTH_CAUCASUS
+					state_region = s:STATE_TIFLIS
+					state_region = s:STATE_ELIZAVETPOL
+					state_region = s:STATE_ARMENIA
+					state_region = s:STATE_CHELYABINSK
+					state_region = s:STATE_KAZAN
+					state_region = s:STATE_PERM
+					state_region = s:STATE_SAMARA
+					state_region = s:STATE_URAL
+					state_region = s:STATE_UFA
+					state_region = s:STATE_Vyatka
+					state_region = s:STATE_AKMOLINSK
+					state_region = s:STATE_URALSK
+					state_region = s:STATE_KRASNOYARSK
+					state_region = s:STATE_OB
+					state_region = s:STATE_SURGUT
+					state_region = s:STATE_TOMSK
+					state_region = s:STATE_TOBOLSK
+					state_region = s:STATE_UPPER_YENISEYSK
+					state_region = s:STATE_BURYATIA
+					state_region = s:STATE_IRKUTSK
+					state_region = s:STATE_CHUKOTKA
+					state_region = s:STATE_IRKUTSK
+					state_region = s:STATE_KAMCHATKA
+					state_region = s:STATE_KOLYMA
+					state_region = s:STATE_OKHOTSK
+					state_region = s:STATE_YAKUTSK
+							}
+						}
+						set_state_owner = c:WRU
+					}
+				}
+
+
+				
+
+
+				}
+			
+
+
+	
+	option = {
+		name = mhf_events.15.a
+		default_option = yes
+		ai_chance = { base = 100 }
+		
+		# 백군(차르 지지 세력) 생성 및 내전 시작
+
 		scope:russia_scope = {
 			activate_law = law_type:law_council_republic
 			activate_law = law_type:law_state_atheism
@@ -1022,34 +1126,39 @@ mhf_events.15 = {
 			activate_law = law_type:law_collectivized_agriculture
 			activate_law = law_type:law_public_schools
 		}
-		random_scope_character = {
-			limit = {
-				has_variable = lenin_var
-			}
-			save_scope_as = lenin_scope
-		}
+		c:WRU = {
+					save_scope_as = white_russia_scope
+				}
+				
+
+				scope:white_russia_scope = {		
+					create_diplomatic_play = {
+            		name = rus_cw
+
+            		target_state = c:RUS.capital
+
+            		war = yes
+            		annex_as_civil_war = yes
+
+            		type = dp_revolution
+
+        			}
+				}
 		scope:lenin_scope = {
+			set_as_interest_group_leader = yes
 			set_character_as_ruler = yes
 		}
-
-	}
-	option = {
-		name = mhf_events.15.a
-		default_option = yes
-		ai_chance = { base = 100 }
-		
-		# 백군(차르 지지 세력) 생성 및 내전 시작
-		start_civil_war = {
-			revolution_target = root
-			civil_war_type = revolution
-			
-			# 백군 지지 세력
-			add_leader = scope:tsar_scope
-			
-			# 보수 이익집단들이 백군 지지
-			add_interest_group = ig_landowners
-			add_interest_group = ig_armed_forces
-			add_interest_group = ig_devout
-		}
+				ig:ig_trade_unions ?={
+					add_modifier = {
+						name = trade_unions_boost_rus
+						days = -1
+					}
+				}
+				root = {
+					add_modifier = {
+						name = lenin_legitimacy_boost
+						days = -1
+					}
+				}
 	}
 }

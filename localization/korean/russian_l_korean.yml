@@ -11,3 +11,7 @@
  mhf_events.15.t: "적백내전"
  mhf_events.15.d: "[SCOPE.sCharacter('lenin_scope').GetFullName]이 이끄는 소비에트 혁명군이 [SCOPE.sCountry('russia_scope').GetName] 전역에서 권력을 장악했다. 누가 승리하던 간에, 이제 [SCOPE.sCountry('russia_scope').GetName]는 예전같지 않을 것이다."
  mhf_events.15.a: "이제 돌이킬 수 없다."
+ rus_cw: "적백내전"
+ WRU: "백색 러시아"
+ trade_unions_boost_rus: "볼셰베키의 정권 장악"
+ lenin_legitimacy_boost: "인민의 정통성"
