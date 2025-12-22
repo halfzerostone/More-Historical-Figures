@@ -1,0 +1,13 @@
+﻿l_korean:
+ mhf_events.13.t: "피의 일요일"
+ mhf_events.13.d: "일요일 오전, [SCOPE.sCountry('russia_scope').GetName]의 수도 [SCOPE.sState('moscow_scope').GetName]에서 임금 인상을 요구하는 시위대가 황제 [SCOPE.sCharacter('nicholas_scope').GetFullName]에게 청원서를 제출하기 위해 겨울 궁전으로 행진했다."
+ mhf_events.13.a: "그들의 요구를 인지했다고 전해라."
+ mhf_events.13.b: "하느님이시여, [SCOPE.sCountry('russia_scope').GetName]을 보우하소서."
+ mhf_events.13.c: "시위대를 해산시켜라."
+ mhf_events.13.b.d: "근위대에게 시위대를 향해 발포 명령을 내립니다. \n#r 이 선택지는 예상치 못한 결과로 이어질 수도 있습니다...#!"
+ mhf_events.14.t: "'Pathetique' no.6"
+ mhf_events.14.d: "[SCOPE.sCountry('russia_scope').GetName]에서 일어난 사건으로 인해, [SCOPE.sCountry('russia_scope').GetName]의 노동자들의 분노는 점점 거세진다. 한편, [SCOPE.sCountry('russia_scope').GetName]로 귀국한 [SCOPE.sCharacter('lenin_scope').GetFullName]은 소비에트를 이끌어 러시아의 새 시대를 준비하기 시작한다."
+ mhf_events.14.a: "폭풍전야다."
+ mhf_events.15.t: "적백내전"
+ mhf_events.15.d: "[SCOPE.sCharacter('lenin_scope').GetFullName]이 이끄는 소비에트 혁명군이 [SCOPE.sCountry('russia_scope').GetName] 전역에서 권력을 장악했다. 누가 승리하던 간에, 이제 [SCOPE.sCountry('russia_scope').GetName]는 예전같지 않을 것이다."
+ mhf_events.15.a: "이제 돌이킬 수 없다."

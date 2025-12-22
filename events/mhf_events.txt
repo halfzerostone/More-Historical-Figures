@@ -802,6 +802,8 @@ mhf_events.11 = {
 	event_image = {
 		video = "ep1_power_blocs"
 	}
+
+	duration = 1
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
 
@@ -829,6 +831,7 @@ mhf_events.12 = {
 	title = mhf_events.5_fail.t
 	desc = mhf_events.5_fail.d
 
+	duration = 1
 	event_image = {
 		video = "ip3_police_raid"
 	}
@@ -844,5 +847,209 @@ mhf_events.12 = {
 			base = 100
 		}
 		# 옵션 효과 작성
+	}
+}
+
+mhf_events.13 = {
+	type = country_event
+	placement = root
+
+	title = mhf_events.13.t
+	desc = mhf_events.13.d
+
+	duration = 1
+	event_image = {
+		video = "votp_agitator_speaking"
+	}
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+	trigger = {
+		game_date >= 1905.1.22
+		NOT = {
+			has_variable = mhf_events_13_fired
+		}
+		c:RUS ?= this
+		has_law_or_variant = law_type:law_monarchy
+	}
+
+	immediate = {
+		set_variable = mhf_events_13_fired
+		root = {
+			save_scope_as = russia_scope
+		}
+		ruler = {
+			save_scope_as = nicholas_scope
+		}
+		capital = {
+			save_scope_as = moscow_scope
+		}
+	}
+	option = {
+		name = mhf_events.13.a
+		default_option = yes
+		ai_chance = { base = 40 }
+		scope:russia_scope = {
+			# 옵션 효과 작성
+			activate_law = law_type:law_wage_subsidies
+
+			set_institution_investment_level = {
+				institution = institution_social_security
+				level = 2
+			}
+		}
+	}
+	option = {
+		name = mhf_events.13.b
+		custom_tooltip = mhf_events.13.b.d
+		ai_chance = { base = 30 }
+		scope:russia_scope = {
+			# 옵션 효과 작성
+			trigger_event = {
+				id = mhf_events.14
+				days = 7
+			}
+		add_radicals = {
+			culture = cu:russian
+			value = {
+				add = huge_radicals
+			}
+		}
+		}
+	}
+
+
+	option = {
+		name = mhf_events.13.c
+		ai_chance = { base = 30 }
+		trigger = {
+			has_law_or_variant = law_type:law_guaranteed_liberties
+		}
+		
+		add_radicals = {
+			culture = cu:russian
+			value = {
+				add = huge_radicals
+			}
+		}
+	}
+}
+
+mhf_events.14 = {
+	type = country_event
+	placement = root
+
+	title = mhf_events.14.t
+	desc = mhf_events.14.d
+
+	duration = 1
+	event_image = {
+		video = "europenorthamerica_rich_and_poor"
+	}
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+	immediate = {
+		root = {
+			save_scope_as = russia_scope
+		}
+		if = {
+			limit= {
+			NOT = {
+				has_global_variable = lenin_spawned
+			}
+			}
+		create_character = {
+			template = rus_lenin_character_template
+			on_created = {
+				set_variable = lenin_var
+			}
+		}
+		random_scope_character = {
+			limit = {
+				has_variable = lenin_var
+			}
+			save_scope_as = lenin_scope
+		}
+		set_global_variable = lenin_spawned
+	}
+}
+	
+	option = {
+		name = mhf_events.14.a
+		default_option = yes
+		trigger_event = {
+			id = mhf_events.15
+			days = 7
+		}
+	}
+}
+
+mhf_events.15 = {
+	type = country_event
+	placement = root
+
+	title = mhf_events.15.t
+	desc = mhf_events.15.d
+
+	duration = 1
+	event_image = {
+		video = "europenorthamerica_springtime_of_nations"
+	}
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+	immediate = {
+		ruler = {
+			save_scope_as = tsar_scope
+		}
+		root = {
+			save_scope_as = russia_scope
+		}
+		scope:russia_scope = {
+			activate_law = law_type:law_council_republic
+			activate_law = law_type:law_state_atheism
+			activate_law = law_type:law_elected_bureaucrats
+			activate_law = law_type:law_mass_conscription
+			activate_law = law_type:law_universal_suffrage
+			activate_law = law_type:law_cooperative_ownership
+			activate_law = law_type:law_collectivized_agriculture
+			activate_law = law_type:law_public_schools
+		}
+		random_scope_character = {
+			limit = {
+				has_variable = lenin_var
+			}
+			save_scope_as = lenin_scope
+		}
+		scope:lenin_scope = {
+			set_character_as_ruler = yes
+		}
+
+	}
+	option = {
+		name = mhf_events.15.a
+		default_option = yes
+		ai_chance = { base = 100 }
+		
+		# 백군(차르 지지 세력) 생성 및 내전 시작
+		start_civil_war = {
+			revolution_target = root
+			civil_war_type = revolution
+			
+			# 백군 지지 세력
+			add_leader = scope:tsar_scope
+			
+			# 보수 이익집단들이 백군 지지
+			add_interest_group = ig_landowners
+			add_interest_group = ig_armed_forces
+			add_interest_group = ig_devout
+		}
 	}
 }
