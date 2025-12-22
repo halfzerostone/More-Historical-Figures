@@ -723,6 +723,20 @@ mhf_events.10 = {
 			name = federation_support
 			add = 2
 		}
+		if = {
+			limit = {
+				has_global_variable = federation_support
+				global_var:federation_support >= 7
+			}
+			trigger_event = { id = mhf_events.11 }
+		}
+		else_if = {
+			limit = {
+				has_global_variable = federation_support
+				global_var:federation_support < 7
+			}
+			trigger_event = { id = mhf_events.12 }
+		}
 	}
 	option = {
 		name = mhf_events.5_5.b
@@ -734,6 +748,20 @@ mhf_events.10 = {
 		}
 		scope:uk_scope = {
 			activate_law = law_type:racial_segregation
+		}
+		if = {
+			limit = {
+				has_global_variable = federation_support
+				global_var:federation_support >= 7
+			}
+			trigger_event = { id = mhf_events.11 }
+		}
+		else_if = {
+			limit = {
+				has_global_variable = federation_support
+				global_var:federation_support < 7
+			}
+			trigger_event = { id = mhf_events.12 }
 		}
 	}
 	option = {
@@ -747,16 +775,30 @@ mhf_events.10 = {
 			name = federation_support
 			value = 0
 		}
+		if = {
+			limit = {
+				has_global_variable = federation_support
+				global_var:federation_support >= 7
+			}
+			trigger_event = { id = mhf_events.11 }
+		}
+		else_if = {
+			limit = {
+				has_global_variable = federation_support
+				global_var:federation_support < 7
+			}
+			trigger_event = { id = mhf_events.12 }
+		}
 	}
 }
 
-mhf_events_fed_done = {
+mhf_events.11 = {
 	type = country_event
 	placement = root
 
 	title = mhf_events.5_done.t
 	desc = mhf_events.5_done.d
-
+	flavor = mhf_events.5_done.f
 	event_image = {
 		video = "ep1_power_blocs"
 	}
@@ -764,9 +806,23 @@ mhf_events_fed_done = {
 	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
 
 	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	option = {
+		name = mhf_events.5_done.a
+		default_option = yes
+		ai_chance = {
+			base = 100
+		}
+
+		# 옵션 효과 작성
+		every_subject_or_below = {
+			root = {
+				annex = prev
+			}
+		}
+	}
 }
 
-mhf_events_fed_failed = {
+mhf_events.12 = {
 	type = country_event
 	placement = root
 
@@ -774,10 +830,19 @@ mhf_events_fed_failed = {
 	desc = mhf_events.5_fail.d
 
 	event_image = {
-		video = "ep1_power_blocs"
+		video = "ip3_police_raid"
 	}
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
 
 	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+	option = {
+		name = mhf_events.5_fail.a
+		default_option = yes
+		ai_chance = {
+			base = 100
+		}
+		# 옵션 효과 작성
+	}
 }

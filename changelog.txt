@@ -15,13 +15,18 @@ erased by accident. will start again
 
 beta 0.2
 
-Added 1 figures & 5 events
+Added 1 figures & 3 events
 
 -Adolf Hitler
 
 -Beerhall Putsch
--Ern
--Anschuluss
--US/UK Ally
--UK Fed
+-Ermächtigungsgesetz
+-Anschuluss of Austria
+
+beta 0.3
+
+Added 2 events (with sub-branch events)
+
+-USA asking for rejoining the commomwealth
+-British empire
 
