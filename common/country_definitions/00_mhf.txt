@@ -9,3 +9,51 @@ WRU = {
 
     capital = STATE_TRANS_BAIKAL
 }
+
+SRU = {
+    color = { 9 23 93 }
+
+    country_type = recognized
+
+    tier = empire 
+
+    cultures = {russian}
+
+    capital = STATE_KRASNOYARSK
+}
+
+DON = {
+    color = { 0 102 204 }
+
+    country_type = recognized
+
+    tier = principality
+
+    cultures = {russian}
+
+    capital = STATE_ROSTOV
+}
+
+CIR = {
+    color = { 34 139 34 }
+
+    country_type = recognized
+
+    tier = principality
+
+    cultures = {caucasian}
+
+    capital = STATE_KUBAN
+}
+
+MAX = {
+    color = { 0 0 0 }
+
+    country_type = unrecognized
+
+    tier = kingdom
+
+    cultures = {ukrainian}
+
+    capital = STATE_TAURIDA
+}

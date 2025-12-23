@@ -1024,7 +1024,56 @@ mhf_events.15 = {
 					
 					state = s:STATE_TRANS_BAIKAL.region_state:RUS
 				}
+				create_country = {
+					tag = SRU
+					origin = root
+					
+					state = s:STATE_KRASNOYARSK.region_state:RUS
+				}
+				create_country = {
+					tag = DON
+					origin = root
+
+					state = s:STATE_ROSTOV.region_state:RUS
+				}
+				create_country = {
+					tag = CIR
+					origin = root
+
+					state = s:STATE_KUBAN.region_state:RUS
+				}
+				create_country = {
+					tag = MAX
+					origin = root
+
+					state = s:STATE_TAURIDA.region_state:RUS
+				}
+				# SRU, DON, CIR을 WRU의 자치령으로 설정
+				c:WRU = {
+					
+				}
+				
 				c:RUS = {
+					every_scope_state = {
+						limit = {
+							OR = {
+					state_region = s:STATE_CREMEA
+					state_region = s:STATE_BESSARABIA
+					state_region = s:STATE_KUBAN
+					state_region = s:STATE_ROSTOV
+					state_region = s:STATE_KHERSON
+							}
+						}
+						set_state_owner = c:SRU
+					}
+					c:MAX = {
+						save_scope_as = max_scope
+					}
+					create_diplomatic_pact = {
+						country = scope:max_scope
+						type = dominion
+					}
+				
 					every_scope_state = {
 						limit = {
 							OR = {
@@ -1039,9 +1088,7 @@ mhf_events.15 = {
 					state_region = s:STATE_TAMBOV
 					state_region = s:STATE_YAROSLAVL
 					state_region = s:STATE_CHERNIGOV
-					state_region = s:STATE_CREMEA
 					state_region = s:STATE_KHARKOV
-					state_region = s:STATE_KHERSON
 					state_region = s:STATE_KIEV
 					state_region = s:STATE_TAURIDA
 					state_region = s:STATE_VOLHYNIA
@@ -1052,7 +1099,6 @@ mhf_events.15 = {
 					state_region = s:STATE_LUBLIN
 					state_region = s:STATE_POLOCK
 					state_region = s:STATE_WARSZAWA
-					state_region = s:STATE_BESSARABIA
 					state_region = s:STATE_DOBRUDJA
 					state_region = s:STATE_SOUTH_LIVONIA
 					state_region = s:STATE_LITHUANIA
@@ -1061,12 +1107,10 @@ mhf_events.15 = {
 					state_region = s:STATE_KOLA
 					state_region = s:STATE_ASTRAKHAN
 					state_region = s:STATE_KALMYKIA
-					state_region = s:STATE_ROSTOV
 					state_region = s:STATE_STAVROPOL
 					state_region = s:STATE_KARS
 					state_region = s:STATE_BAKU
 					state_region = s:STATE_DAGESTAN
-					state_region = s:STATE_KUBAN
 					state_region = s:STATE_NORTH_CAUCASUS
 					state_region = s:STATE_TIFLIS
 					state_region = s:STATE_ELIZAVETPOL
@@ -1077,7 +1121,7 @@ mhf_events.15 = {
 					state_region = s:STATE_SAMARA
 					state_region = s:STATE_URAL
 					state_region = s:STATE_UFA
-					state_region = s:STATE_Vyatka
+					state_region = s:STATE_VYATKA
 					state_region = s:STATE_AKMOLINSK
 					state_region = s:STATE_URALSK
 					state_region = s:STATE_KRASNOYARSK
