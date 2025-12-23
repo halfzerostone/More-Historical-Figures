@@ -9,3 +9,12 @@ trade_unions_boost_rus = {
     interest_group_pol_str_mult = 10
     interest_group_approval_add = 20
 }
+
+rcw_debuff = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_negative.dds
+    unit_army_offense_mult = -0.9
+}
+red_army_boost = {
+    icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
+    unit_army_offense_mult = 0.5
+}

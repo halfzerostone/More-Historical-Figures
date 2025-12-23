@@ -1125,13 +1125,21 @@ mhf_events.15 = {
 			activate_law = law_type:law_cooperative_ownership
 			activate_law = law_type:law_collectivized_agriculture
 			activate_law = law_type:law_public_schools
+					add_modifier = {
+						name = rcw_debuff
+						days = 3650
+					}
 		}
 		c:WRU = {
 					save_scope_as = white_russia_scope
 				}
 				
 
-				scope:white_russia_scope = {		
+				scope:white_russia_scope = {	
+					add_modifier = {
+						name = rcw_debuff
+						days = 3650
+					}
 					create_diplomatic_play = {
             		name = rus_cw
 
@@ -1161,4 +1169,63 @@ mhf_events.15 = {
 					}
 				}
 	}
+}
+
+mhf_events.16 = {
+	type = country_event
+	placement = root
+
+	title = mhf_events.16.t
+	desc = mhf_events.16.d
+
+	duration = 1
+	event_image = {
+		video = "ip3_police_raid"
+	}
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+
+	trigger = {
+		has_variable = mhf_events_13_fired
+		NOT = {
+			has_variable = mhf_events_16_fired
+			has_variable = trotsky_spawn
+		}
+		c:RUS ?= this
+	}
+
+	immediate = {
+		set_variable = mhf_events_16_fired
+		create_character = {
+			template = rus_leon_trotsky_character_template
+			on_created = {
+				set_variable = trotsky_var
+			}
+		}
+		random_scope_character = {
+			limit = {
+				has_variable = trotsky_var
+			}
+			save_scope_as = trotsky_scope
+		}
+		set_global_variable = trotsky_spawn
+		root = {
+			save_scope_as = russia_scope
+		}
+	}
+	option = {
+		name = mhf_events.16.a
+		default_option = yes
+		ai_chance = { base = 100 }
+		scope:russia_scope = {
+			remove_modifier = rcw_debuff
+			add_modifier = {
+				name = red_army_boost
+				days = 365 
+			}
+		}
+	}
+
 }
