@@ -49,3 +49,10 @@ on_monthly_redarmy = {
 		1 = mhf_events.16
 	}
 }
+
+on_monthly_bloodysunday = {
+	random_events = {
+		chance_to_happen = 10
+		1 = mhf_events.13
+	}
+}

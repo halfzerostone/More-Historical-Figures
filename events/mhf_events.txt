@@ -1005,7 +1005,7 @@ mhf_events.15 = {
 		create_country = {
 			tag = SRU
 			origin = root
-			state = s:STATE_KRASNOYARSK.region_state:RUS
+			state = s:STATE_KIEV.region_state:RUS
 		}
 		create_country = {
 			tag = MAX
