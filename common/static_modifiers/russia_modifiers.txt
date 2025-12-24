@@ -1,20 +1,22 @@
 lenin_legitimacy_boost = {
-    icon =  gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
-    country_legitimacy_base_add = 100
-    
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_flag_positive.dds
+	country_legitimacy_base_add = 100
 }
 
 trade_unions_boost_rus = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
-    interest_group_pol_str_mult = 10
-    interest_group_approval_add = 20
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_statue_positive.dds
+	interest_group_pol_str_mult = 10
+	interest_group_approval_add = 20
 }
 
 rcw_debuff = {
 	icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_negative.dds
-    unit_army_offense_mult = -0.9
+	unit_army_offense_mult = -0.9
 }
+
 red_army_boost = {
-    icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
-    unit_army_offense_mult = 0.5
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
+	unit_army_offense_mult = 0.5
+	military_formation_mobilization_speed_mult = 0.5
+	military_formation_movement_speed_mult = 0.5
 }

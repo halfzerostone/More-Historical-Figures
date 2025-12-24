@@ -19,32 +19,9 @@ SRU = {
 
     cultures = {russian}
 
-    capital = STATE_KRASNOYARSK
+    capital = STATE_KIEV
 }
 
-DON = {
-    color = { 0 102 204 }
-
-    country_type = recognized
-
-    tier = principality
-
-    cultures = {russian}
-
-    capital = STATE_ROSTOV
-}
-
-CIR = {
-    color = { 34 139 34 }
-
-    country_type = recognized
-
-    tier = principality
-
-    cultures = {caucasian}
-
-    capital = STATE_KUBAN
-}
 
 MAX = {
     color = { 0 0 0 }

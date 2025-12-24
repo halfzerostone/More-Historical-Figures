@@ -1,0 +1,47 @@
+denikin_charater_template = {
+    first_name = Anton
+    last_name = Denikin
+    historical = yes
+    culture = cu:russian
+    interest_group = ig_armed_forces
+	female = no
+	birth_date = 1872.12.16
+	dna = dna_anton_denikin
+	ideology = ideology_authoritarian
+	traits = {
+		ambitious
+		brave
+	}
+}
+
+kolchak_character_template = {
+	first_name = Alexander
+	last_name = Kolchak
+	historical = yes
+	culture = cu:russian
+	interest_group = ig_armed_forces
+	female = no
+	birth_date = 1874.11.16
+	dna = dna_alexander_kolchak
+	ideology = ideology_authoritarian
+	traits = {
+		bigoted
+		charismatic
+	}
+}
+
+yudenich_character_template = {
+	first_name = Nikolai
+	last_name = Yudenich
+	historical = yes
+	culture = cu:russian
+	interest_group = ig_armed_forces
+	female = no
+	birth_date = 1862.04.30
+	dna = dna_alexander_kolchak # temp
+	ideology = ideology_moderate
+	traits = {
+		brave
+		basic_offensive_planner
+	}
+}

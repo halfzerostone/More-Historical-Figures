@@ -1,27 +1,21 @@
-﻿
-namespace = mhf_events
-
+﻿namespace = mhf_events
 # Adolf Hitler 등장 이벤트 예시
 mhf_events.1 = {
-    type = country_event
-    placement = root
-
-    gui_window = event_window_1char_tabloid
-    left_icon = scope:hitler_scope
-
-    on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-    on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
-
-    icon = "gfx/interface/icons/event_icons/event_scales.dds"
-
-    title = mhf_events.1.t
-    desc = mhf_events.1.d
-    flavor = mhf_events.1.f
-
-    duration = 3
-
+	type = country_event
+	placement = root
+	gui_window = event_window_1char_tabloid
+	left_icon = scope:hitler_scope
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	title = mhf_events.1.t
+	desc = mhf_events.1.d
+	flavor = mhf_events.1.f
+	duration = 3
 	trigger = {
-		NOT = { has_variable = mhf_events_1_fired }
+		NOT = {
+			has_variable = mhf_events_1_fired
+		}
 		# 예시 트리거: 1923년 11월 8일 이후, 독일, agitator 슬롯 1개 이상
 		game_date >= 1923.11.8
 		OR = {
@@ -30,38 +24,38 @@ mhf_events.1 = {
 		}
 		empty_agitator_slots >= 1
 	}
-
-    immediate = {
-        # 아돌프 히틀러 agitator 생성 및 스코프 부여
-		   set_variable = mhf_events_1_fired
-        create_character = {
-            template = adolf_hitler_character_template
+	immediate = {
+		# 아돌프 히틀러 agitator 생성 및 스코프 부여
+		set_variable = mhf_events_1_fired
+		create_character = {
+			template = adolf_hitler_character_template
 			on_created = {
 				place_character_in_void = 3
 				add_character_role = politician
 				set_variable = hitler_var
 			}
-            save_scope_as = hitler_scope
-        }
+			save_scope_as = hitler_scope
+		}
 		random_character_in_void = {
 			limit = {
 				has_variable = hitler_var
 			}
 			save_scope_as = hitler_scope
 		}
-    }
-    option = {
+	}
+	option = {
 		name = mhf_events.1.a
 		default_option = yes
 		ai_chance = {
 			base = 75
 		}
-        # 히틀러가 소시민(ig_petty_bourgeoisie) 지도자가 됨
+		# 히틀러가 소시민(ig_petty_bourgeoisie) 지도자가 됨
 		scope:hitler_scope = {
 			free_character_from_void = yes
 			set_as_interest_group_leader = yes
-    }}
-    option = {
+		}
+	}
+	option = {
 		name = mhf_events.1.b
 		ai_chance = {
 			base = 25
@@ -69,130 +63,119 @@ mhf_events.1 = {
 		scope:hitler_scope = {
 			kill_character = yes
 		}
-    }
+	}
 }
 
-	# 수권법 제정 이벤트
+# 수권법 제정 이벤트
 mhf_events.2 = {
-		type = country_event
-		placement = root
-
-		event_image = {
-			video = "unspecific_politicians_arguing"
-		}
-		on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
-		on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
-
-		icon = "gfx/interface/icons/event_icons/event_scales.dds"
-
-		title = mhf_events.2.t
-		desc = mhf_events.2.d
-		flavor = mhf_events.2.f
-
-		duration = 3
-
-		trigger = {
-			NOT = { has_variable = mhf_events_2_fired }
-			ig:ig_petty_bourgeoisie ?={
-				leader = {
-					has_variable = hitler_var
-				}
-			}
-			game_date >= 1933.3.23
-			OR = {
-				c:GER ?= this
-				c:PRU ?= this
-			}
-			
-		}
-
-		immediate = {
-			set_variable = mhf_events_2_fired
-			root = {
-				save_scope_as = country_scope
-			}
-
-			random_scope_character = {
-				limit = {
-					has_variable = hitler_var
-				}
-				save_scope_as = hitler_scope
-			}
-		}
-
-		option = {
-			
-			name = mhf_events.2.a
-			default_option = yes
-			ai_chance = { base = 80 }
-			scope:country_scope = {
-				activate_law = law_type:law_corporate_state
-				activate_law = law_type:law_single_party_state	
-			}
-			add_modifier = {
-				name = hitler_legitimacy_boost
-				days = 3650
-				is_decaying = yes
-					}
-			ig:ig_petty_bourgeoisie ?={
-				add_modifier = {
-					name = pb_pol_bonus
-					days = 3650
-					is_decaying = yes
-					}
-				}
-
-			scope:hitler_scope = {
-				set_character_as_ruler = yes
-			}
-		}
-		option = {
-			name = mhf_events.2.b
-			ai_chance = { base = 20 }
-			
-			ig:ig_petty_bourgeoisie ?={
-				add_modifier = {
-					name = failed_power_grab_petty_bourgeoisie
-					days = 3650
-					is_decaying = yes
-					}
-				}
-		}
-	}
-
-	mhf_events.3 = {
 	type = country_event
 	placement = root
-
 	event_image = {
-		video = "ep1_transfer_of_authority"
+		video = "unspecific_politicians_arguing"
 	}
-
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
-
 	icon = "gfx/interface/icons/event_icons/event_scales.dds"
-
-	title = mhf_events.3.t
-	desc = mhf_events.3.d
-
+	title = mhf_events.2.t
+	desc = mhf_events.2.d
+	flavor = mhf_events.2.f
 	duration = 3
-
 	trigger = {
-		game_date >= 1933.1.30
-		NOT = { has_variable = mhf_events_3_fired }
+		NOT = {
+			has_variable = mhf_events_2_fired
+		}
+		ig:ig_petty_bourgeoisie ?= {
+			leader = {
+				has_variable = hitler_var
+			}
+		}
+		game_date >= 1933.3.23
 		OR = {
 			c:GER ?= this
 			c:PRU ?= this
 		}
-		ig:ig_petty_bourgeoisie ?={
+	}
+	immediate = {
+		set_variable = mhf_events_2_fired
+		root = {
+			save_scope_as = country_scope
+		}
+		random_scope_character = {
+			limit = {
+				has_variable = hitler_var
+			}
+			save_scope_as = hitler_scope
+		}
+	}
+	option = {
+		name = mhf_events.2.a
+		default_option = yes
+		ai_chance = {
+			base = 80
+		}
+		scope:country_scope = {
+			activate_law = law_type:law_corporate_state
+			activate_law = law_type:law_single_party_state
+		}
+		add_modifier = {
+			name = hitler_legitimacy_boost
+			days = 3650
+			is_decaying = yes
+		}
+		ig:ig_petty_bourgeoisie ?= {
+			add_modifier = {
+				name = pb_pol_bonus
+				days = 3650
+				is_decaying = yes
+			}
+		}
+		scope:hitler_scope = {
+			set_character_as_ruler = yes
+		}
+	}
+	option = {
+		name = mhf_events.2.b
+		ai_chance = {
+			base = 20
+		}
+		ig:ig_petty_bourgeoisie ?= {
+			add_modifier = {
+				name = failed_power_grab_petty_bourgeoisie
+				days = 3650
+				is_decaying = yes
+			}
+		}
+	}
+}
+
+mhf_events.3 = {
+	type = country_event
+	placement = root
+	event_image = {
+		video = "ep1_transfer_of_authority"
+	}
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	title = mhf_events.3.t
+	desc = mhf_events.3.d
+	duration = 3
+	trigger = {
+		game_date >= 1933.1.30
+		NOT = {
+			has_variable = mhf_events_3_fired
+		}
+		OR = {
+			c:GER ?= this
+			c:PRU ?= this
+		}
+		ig:ig_petty_bourgeoisie ?= {
 			leader = {
 				has_variable = hitler_var
 			}
 		}
 		exists = c:AUS
 	}
-
 	immediate = {
 		set_variable = mhf_events_3_fired
 		root = {
@@ -208,151 +191,143 @@ mhf_events.2 = {
 			save_scope_as = hitler_scope
 		}
 	}
-
 	option = {
 		name = mhf_events.3.a
 		default_option = yes
-		ai_chance = { base = 20 }
-		
-			random_list = {
-				60 ={
-					root = {
-						annex = c:AUS
-					}
-				}
-				40= {
-					root = {
-						change_relations = {
-							country = c:AUS
-							value = -100
-						}
-					}
-					s:STATE_BOHEMIA = {
-						add_claim = ROOT
-					}
-					s:STATE_AUSTRIA = {
-						add_claim = ROOT
-					}
-					s:STATE_STYRIA = {
-						add_claim = ROOT
-					}
-					s:STATE_MORAVIA = {
-						add_claim = ROOT
-					}
-					s:STATE_TYROL = {
-						add_claim = ROOT
-					}
+		ai_chance = {
+			base = 20
+		}
+		random_list = {
+			60 = {
+				root = {
+					annex = c:AUS
 				}
 			}
+			40 = {
+				root = {
+					change_relations = {
+						country = c:AUS
+						value = -100
+					}
+				}
+				s:STATE_BOHEMIA = {
+					add_claim = ROOT
+				}
+				s:STATE_AUSTRIA = {
+					add_claim = ROOT
+				}
+				s:STATE_STYRIA = {
+					add_claim = ROOT
+				}
+				s:STATE_MORAVIA = {
+					add_claim = ROOT
+				}
+				s:STATE_TYROL = {
+					add_claim = ROOT
+				}
+			}
+		}
 	}
-
 	option = {
 		name = mhf_events.3.b
-		ai_chance = { base = 80 }
+		ai_chance = {
+			base = 80
+		}
 		add_radicals = {
 			culture = cu:south_german
 			culture = cu:north_german
 			value = {
-				add=huge_radicals
+				add = huge_radicals
 			}
 		}
 	}
-
-	
 }
 
 mhf_events.4 = {
 	type = country_event
 	placement = root
-
 	event_image = {
 		video = "votp_monarch_holding_court"
 	}
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_B"
-
 	icon = "gfx/interface/icons/event_icons/event_scales.dds"
-
 	title = mhf_events.4.t
 	desc = mhf_events.4.d
-
 	duration = 3
 	trigger = {
 		c:GBR ?= this
-			c:USA = {
-				relations:root > 30 
-			}
-		
+		c:USA = {
+			relations:root > 30
+		}
 	}
-
 	immediate = {
 		root = {
 			save_scope_as = uk_scope
-		c:USA = {
-			save_scope_as = usa_scope
-		}
-		c:MEX = {
-			save_scope_as = mexico_scope
+			c:USA = {
+				save_scope_as = usa_scope
+			}
+			c:MEX = {
+				save_scope_as = mexico_scope
+			}
 		}
 	}
-	}
-
-	option = { #usa annex
+	option = {
+		#usa annex
 		name = mhf_events.4.a
-		ai_chance = { base = 0 }
+		ai_chance = {
+			base = 0
+		}
 		root = {
 			annex = c:USA
 		}
 	}
-
-	option = { #usa ally
+	option = {
+		#usa ally
 		name = mhf_events.4.b
 		custom_tooltip = mhf_events.4.b.d
 		default_option = yes
-		ai_chance = { base = 20 }
+		ai_chance = {
+			base = 20
+		}
 		create_treaty = {
 			name = treaty_name_us_uk
-			
-				first_country = c:USA
-				second_country = c:GBR
-
-				is_draft = no 
-				entered_into_force_on = 1815.10.15
-				binding_period = { years = 10} 
-				articles_to_create = {
-					{
-					article =  alliance
-					}
+			first_country = c:USA
+			second_country = c:GBR
+			is_draft = no
+			entered_into_force_on = 1815.10.15
+			binding_period = {
+				years = 10
+			}
+			articles_to_create = {
+				{
+					article = alliance
 				}
 			}
-		
-			
 		}
-	
-	option = { #usa neutral
+	}
+	option = {
+		#usa neutral
 		name = mhf_events.4.c
-		ai_chance = { base = 80 }
+		ai_chance = {
+			base = 80
+		}
 	}
 }
+
 mhf_events.5 = {
 	type = country_event
 	placement = root
-
 	event_image = {
 		video = "ep1_power_blocs"
 	}
-
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
-
 	icon = "gfx/interface/icons/event_icons/event_scales.dds"
-
 	title = mhf_events.5.t
 	desc = mhf_events.5.d
 	flavor = mhf_events.5.f
-
 	duration = 3
-
 	trigger = {
 		c:GBR ?= this
 		game_date >= 1836.1.1
@@ -361,9 +336,10 @@ mhf_events.5 = {
 				has_template = gbr_queen_victoria_template
 			}
 		}
-		NOT = { has_variable = mhf_events_5_fired }
+		NOT = {
+			has_variable = mhf_events_5_fired
+		}
 	}
-
 	immediate = {
 		ruler = {
 			save_scope_as = victoria_scope
@@ -373,47 +349,49 @@ mhf_events.5 = {
 		}
 		set_variable = mhf_events_5_fired
 	}
-
 	option = {
 		name = mhf_events.5.a
 		custom_tooltip = mhf_events.5.a.d
 		default_option = yes
-		ai_chance = { base = 5 }
-		set_global_variable= {
-			name = federation_support
-			value =0
+		ai_chance = {
+			base = 5
 		}
-		add_global_variable= {
+		set_global_variable = {
 			name = federation_support
-			add =2 
+			value = 0
 		}
-		trigger_event = { 
+		add_global_variable = {
+			name = federation_support
+			add = 2
+		}
+		trigger_event = {
 			id = mhf_events.6
-			days=7
+			days = 7
 		}
-		trigger_event = { 
+		trigger_event = {
 			id = mhf_events.7
-			days=14
+			days = 14
 		}
-		trigger_event = { 
+		trigger_event = {
 			id = mhf_events.8
-			days=21
+			days = 21
 		}
-		trigger_event = { 
+		trigger_event = {
 			id = mhf_events.9
-			days=28
+			days = 28
 		}
-		trigger_event = { 
+		trigger_event = {
 			id = mhf_events.10
-			days=35
+			days = 35
 		}
 		# 옵션 효과 작성
 	}
-
 	option = {
 		name = mhf_events.5.b
 		custom_tooltip = mhf_events.5.b.d
-		ai_chance = { base = 95 }
+		ai_chance = {
+			base = 95
+		}
 		add_loyalists = {
 			culture = cu:british
 			value = {
@@ -426,64 +404,65 @@ mhf_events.5 = {
 mhf_events.6 = {
 	type = country_event
 	placement = root
-
 	title = mhf_events.5_1.t
 	desc = mhf_events.5_1.d
-
 	event_image = {
 		video = "ep1_printing_press"
 	}
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
-
 	icon = "gfx/interface/icons/event_icons/event_scales.dds"
-
-
 	duration = 1
 	immediate = {
 		c:GBR = {
 			save_scope_as = uk_scope
 		}
 	}
-
 	option = {
 		name = mhf_events.5_1.a
 		custom_tooltip = mhf_events.5_1_a_d
 		default_option = yes
-		ai_chance = { base = 50 }
+		ai_chance = {
+			base = 50
+		}
 		# 옵션 효과 작성
-		change_global_variable= {
+		change_global_variable = {
 			name = federation_support
 			add = 2
 		}
 		scope:uk_scope = {
-           add_modifier = {
-			   name = heavy_debt_fed
-			   days = 3650
-		}}
+			add_modifier = {
+				name = heavy_debt_fed
+				days = 3650
+			}
+		}
 	}
 	option = {
 		name = mhf_events.5_1.b
 		custom_tooltip = mhf_events.5_1_b_d
-		ai_chance = { base = 50 }
+		ai_chance = {
+			base = 50
+		}
 		# 옵션 효과 작성
-		change_global_variable ={
+		change_global_variable = {
 			name = federation_support
 			add = 1
 		}
 		scope:uk_scope = {
-           add_modifier = {
-			   name = light_debt_fed
-			   days = 3650
-		}}
+			add_modifier = {
+				name = light_debt_fed
+				days = 3650
+			}
+		}
 	}
 	option = {
 		name = mhf_events.5_1.c
 		custom_tooltip = mhf_events.5_1_c_d
-		ai_chance = { base = 0 }
+		ai_chance = {
+			base = 0
+		}
 		# 옵션 효과 작성
 		scope:uk_scope = {
-
 		}
 	}
 }
@@ -491,235 +470,237 @@ mhf_events.6 = {
 mhf_events.7 = {
 	type = country_event
 	placement = root
-
 	title = mhf_events.5_2.t
 	desc = mhf_events.5_2.d
-
 	event_image = {
 		video = "ip2_india_urban_scene"
 	}
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
-
 	icon = "gfx/interface/icons/event_icons/event_scales.dds"
-
-
 	duration = 1
 	immediate = {
 		c:GBR = {
 			save_scope_as = uk_scope
 		}
 	}
-
 	option = {
 		name = mhf_events.5_2.a
 		custom_tooltip = mhf_events.5_2_a_d
 		default_option = yes
-		ai_chance = { base = 50 }
+		ai_chance = {
+			base = 50
+		}
 		# 옵션 효과 작성
-		change_global_variable= {
+		change_global_variable = {
 			name = federation_support
 			add = 2
 		}
 		scope:uk_scope = {
-           add_modifier = {
-			   name = heavy_bureaucracy_fed
-			   days = 3650
-		}}
+			add_modifier = {
+				name = heavy_bureaucracy_fed
+				days = 3650
+			}
+		}
 	}
 	option = {
 		name = mhf_events.5_2.b
 		custom_tooltip = mhf_events.5_2_b_d
-		ai_chance = { base = 50 }
+		ai_chance = {
+			base = 50
+		}
 		# 옵션 효과 작성
-		add_global_variable ={
+		add_global_variable = {
 			name = federation_support
 			add = 1
 		}
 		scope:uk_scope = {
-           add_modifier = {
-			   name = light_bureaucracy_fed
-			   days = 3650
-		}}
+			add_modifier = {
+				name = light_bureaucracy_fed
+				days = 3650
+			}
+		}
 	}
 	option = {
 		name = mhf_events.5_2.c
 		custom_tooltip = mhf_events.5_2_c_d
-		ai_chance = { base = 0 }
+		ai_chance = {
+			base = 0
+		}
 		# 옵션 효과 작성
-		add_global_variable ={
+		add_global_variable = {
 			name = federation_support
 			value = 0
 		}
 		scope:uk_scope = {
-
 		}
 	}
 }
+
 mhf_events.8 = {
 	type = country_event
 	placement = root
-
 	title = mhf_events.5_3.t
 	desc = mhf_events.5_3.d
-
 	event_image = {
 		video = "unspecific_signed_contract"
 	}
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
-
 	icon = "gfx/interface/icons/event_icons/event_scales.dds"
-
-
 	duration = 1
 	immediate = {
 		c:GBR = {
 			save_scope_as = uk_scope
 		}
 	}
-
 	option = {
 		name = mhf_events.5_3.a
 		custom_tooltip = mhf_events.5_3_a_d
 		default_option = yes
-		ai_chance = { base = 50 }
+		ai_chance = {
+			base = 50
+		}
 		# 옵션 효과 작성
-		change_global_variable= {
+		change_global_variable = {
 			name = federation_support
 			add = 2
 		}
 		scope:uk_scope = {
-           add_modifier = {
-			   name = heavy_diplomacy_fed
-			   days = 3650
-		}}
+			add_modifier = {
+				name = heavy_diplomacy_fed
+				days = 3650
+			}
+		}
 	}
 	option = {
 		name = mhf_events.5_3.b
 		custom_tooltip = mhf_events.5_3_b_d
-		ai_chance = { base = 50 }
+		ai_chance = {
+			base = 50
+		}
 		# 옵션 효과 작성
-		add_global_variable ={
+		add_global_variable = {
 			name = federation_support
 			add = 1
 		}
 		scope:uk_scope = {
-           add_modifier = {
-			   name = light_diplomacy_fed
-			   days = 3650
-		}}
+			add_modifier = {
+				name = light_diplomacy_fed
+				days = 3650
+			}
+		}
 	}
 	option = {
 		name = mhf_events.5_3.c
 		custom_tooltip = mhf_events.5_3_c_d
-		ai_chance = { base = 0 }
+		ai_chance = {
+			base = 0
+		}
 		# 옵션 효과 작성
-		add_global_variable ={
+		add_global_variable = {
 			name = federation_support
 			value = 0
 		}
 		scope:uk_scope = {
-
 		}
 	}
 }
+
 mhf_events.9 = {
 	type = country_event
 	placement = root
-
 	title = mhf_events.5_4.t
 	desc = mhf_events.5_4.d
-
 	event_image = {
 		video = "ep1_transfer_of_authority"
 	}
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
-
 	icon = "gfx/interface/icons/event_icons/event_scales.dds"
-
-
 	duration = 1
 	immediate = {
 		c:GBR = {
 			save_scope_as = uk_scope
 		}
 	}
-
 	option = {
 		name = mhf_events.5_4.a
 		custom_tooltip = mhf_events.5_4_a_d
 		default_option = yes
-		ai_chance = { base = 50 }
+		ai_chance = {
+			base = 50
+		}
 		# 옵션 효과 작성
-		change_global_variable= {
+		change_global_variable = {
 			name = federation_support
 			add = 2
 		}
 		scope:uk_scope = {
-           add_modifier = {
-			   name = heavy_military_fed
-			   days = 3650
-		}}
+			add_modifier = {
+				name = heavy_military_fed
+				days = 3650
+			}
+		}
 	}
 	option = {
 		name = mhf_events.5_4.b
 		custom_tooltip = mhf_events.5_4_b_d
-		ai_chance = { base = 50 }
+		ai_chance = {
+			base = 50
+		}
 		# 옵션 효과 작성
-		add_global_variable ={
+		add_global_variable = {
 			name = federation_support
 			add = 1
 		}
 		scope:uk_scope = {
-           add_modifier = {
-			   name = light_military_fed
-			   days = 3650
-		}}
+			add_modifier = {
+				name = light_military_fed
+				days = 3650
+			}
+		}
 	}
 	option = {
 		name = mhf_events.5_4.c
 		custom_tooltip = mhf_events.5_4_c_d
-		ai_chance = { base = 0 }
-		add_global_variable ={
+		ai_chance = {
+			base = 0
+		}
+		add_global_variable = {
 			name = federation_support
 			value = 0
 		}
 		scope:uk_scope = {
-
 		}
 	}
 }
+
 mhf_events.10 = {
 	type = country_event
 	placement = root
-
 	title = mhf_events.5_5.t
 	desc = mhf_events.5_5.d
-
 	event_image = {
 		video = "ip2_cross_cultural_festival"
 	}
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
-
 	icon = "gfx/interface/icons/event_icons/event_scales.dds"
-
-
 	duration = 1
 	immediate = {
 		c:GBR = {
 			save_scope_as = uk_scope
 		}
 	}
-
 	option = {
 		name = mhf_events.5_5.a
 		custom_tooltip = mhf_events.5_5_a_d
 		default_option = yes
-		ai_chance = { base = 50 }
-		change_global_variable= {
+		ai_chance = {
+			base = 50
+		}
+		change_global_variable = {
 			name = federation_support
 			add = 2
 		}
@@ -728,21 +709,27 @@ mhf_events.10 = {
 				has_global_variable = federation_support
 				global_var:federation_support >= 7
 			}
-			trigger_event = { id = mhf_events.11 }
+			trigger_event = {
+				id = mhf_events.11
+			}
 		}
 		else_if = {
 			limit = {
 				has_global_variable = federation_support
 				global_var:federation_support < 7
 			}
-			trigger_event = { id = mhf_events.12 }
+			trigger_event = {
+				id = mhf_events.12
+			}
 		}
 	}
 	option = {
 		name = mhf_events.5_5.b
 		custom_tooltip = mhf_events.5_5_b_d
-		ai_chance = { base = 50 }
-		add_global_variable ={
+		ai_chance = {
+			base = 50
+		}
+		add_global_variable = {
 			name = federation_support
 			add = 1
 		}
@@ -754,24 +741,30 @@ mhf_events.10 = {
 				has_global_variable = federation_support
 				global_var:federation_support >= 7
 			}
-			trigger_event = { id = mhf_events.11 }
+			trigger_event = {
+				id = mhf_events.11
+			}
 		}
 		else_if = {
 			limit = {
 				has_global_variable = federation_support
 				global_var:federation_support < 7
 			}
-			trigger_event = { id = mhf_events.12 }
+			trigger_event = {
+				id = mhf_events.12
+			}
 		}
 	}
 	option = {
 		name = mhf_events.5_5.c
 		custom_tooltip = mhf_events.5_5_c_d
-		ai_chance = { base = 0 }
-		scope:uk_scope = {
-			activate_law = law_type:law_multicultural	
+		ai_chance = {
+			base = 0
 		}
-		add_global_variable ={
+		scope:uk_scope = {
+			activate_law = law_type:law_multicultural
+		}
+		add_global_variable = {
 			name = federation_support
 			value = 0
 		}
@@ -780,14 +773,18 @@ mhf_events.10 = {
 				has_global_variable = federation_support
 				global_var:federation_support >= 7
 			}
-			trigger_event = { id = mhf_events.11 }
+			trigger_event = {
+				id = mhf_events.11
+			}
 		}
 		else_if = {
 			limit = {
 				has_global_variable = federation_support
 				global_var:federation_support < 7
 			}
-			trigger_event = { id = mhf_events.12 }
+			trigger_event = {
+				id = mhf_events.12
+			}
 		}
 	}
 }
@@ -795,18 +792,15 @@ mhf_events.10 = {
 mhf_events.11 = {
 	type = country_event
 	placement = root
-
 	title = mhf_events.5_done.t
 	desc = mhf_events.5_done.d
 	flavor = mhf_events.5_done.f
 	event_image = {
 		video = "ep1_power_blocs"
 	}
-
 	duration = 1
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
-
 	icon = "gfx/interface/icons/event_icons/event_scales.dds"
 	option = {
 		name = mhf_events.5_done.a
@@ -814,7 +808,6 @@ mhf_events.11 = {
 		ai_chance = {
 			base = 100
 		}
-
 		# 옵션 효과 작성
 		every_subject_or_below = {
 			root = {
@@ -827,19 +820,15 @@ mhf_events.11 = {
 mhf_events.12 = {
 	type = country_event
 	placement = root
-
 	title = mhf_events.5_fail.t
 	desc = mhf_events.5_fail.d
-
 	duration = 1
 	event_image = {
 		video = "ip3_police_raid"
 	}
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
-
 	icon = "gfx/interface/icons/event_icons/event_scales.dds"
-
 	option = {
 		name = mhf_events.5_fail.a
 		default_option = yes
@@ -853,19 +842,15 @@ mhf_events.12 = {
 mhf_events.13 = {
 	type = country_event
 	placement = root
-
 	title = mhf_events.13.t
 	desc = mhf_events.13.d
-
 	duration = 1
 	event_image = {
 		video = "votp_agitator_speaking"
 	}
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
-
 	icon = "gfx/interface/icons/event_icons/event_scales.dds"
-
 	trigger = {
 		game_date >= 1905.1.22
 		NOT = {
@@ -874,7 +859,6 @@ mhf_events.13 = {
 		c:RUS ?= this
 		has_law_or_variant = law_type:law_monarchy
 	}
-
 	immediate = {
 		set_variable = mhf_events_13_fired
 		root = {
@@ -890,11 +874,12 @@ mhf_events.13 = {
 	option = {
 		name = mhf_events.13.a
 		default_option = yes
-		ai_chance = { base = 40 }
+		ai_chance = {
+			base = 40
+		}
 		scope:russia_scope = {
 			# 옵션 효과 작성
 			activate_law = law_type:law_wage_subsidies
-
 			set_institution_investment_level = {
 				institution = institution_social_security
 				level = 2
@@ -904,30 +889,31 @@ mhf_events.13 = {
 	option = {
 		name = mhf_events.13.b
 		custom_tooltip = mhf_events.13.b.d
-		ai_chance = { base = 30 }
+		ai_chance = {
+			base = 30
+		}
 		scope:russia_scope = {
 			# 옵션 효과 작성
 			trigger_event = {
 				id = mhf_events.14
 				days = 7
 			}
-		add_radicals = {
-			culture = cu:russian
-			value = {
-				add = huge_radicals
+			add_radicals = {
+				culture = cu:russian
+				value = {
+					add = huge_radicals
+				}
 			}
 		}
-		}
 	}
-
-
 	option = {
 		name = mhf_events.13.c
-		ai_chance = { base = 30 }
+		ai_chance = {
+			base = 30
+		}
 		trigger = {
 			has_law_or_variant = law_type:law_guaranteed_liberties
 		}
-		
 		add_radicals = {
 			culture = cu:russian
 			value = {
@@ -940,45 +926,42 @@ mhf_events.13 = {
 mhf_events.14 = {
 	type = country_event
 	placement = root
-
 	title = mhf_events.14.t
 	desc = mhf_events.14.d
-
 	duration = 1
 	event_image = {
 		video = "europenorthamerica_rich_and_poor"
 	}
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
-
 	icon = "gfx/interface/icons/event_icons/event_scales.dds"
-
 	immediate = {
 		root = {
 			save_scope_as = russia_scope
 		}
 		if = {
-			limit= {
-			NOT = {
-				has_global_variable = lenin_spawned
-			}
-			}
-		create_character = {
-			template = rus_lenin_character_template
-			on_created = {
-				set_variable = lenin_var
-			}
-		}
-		random_scope_character = {
 			limit = {
-				has_variable = lenin_var
+				NOT = {
+					has_global_variable = lenin_spawned
+				}
 			}
-			save_scope_as = lenin_scope
+			create_character = {
+				template = rus_lenin_character_template
+				on_created = {
+					set_variable = lenin_var
+				}
+			}
+			random_scope_character = {
+				limit = {
+					has_variable = lenin_var
+				}
+				save_scope_as = lenin_scope
+			}
+			set_global_variable = lenin_spawned
+			
+			
 		}
-		set_global_variable = lenin_spawned
 	}
-}
-	
 	option = {
 		name = mhf_events.14.a
 		default_option = yes
@@ -992,19 +975,15 @@ mhf_events.14 = {
 mhf_events.15 = {
 	type = country_event
 	placement = root
-
 	title = mhf_events.15.t
 	desc = mhf_events.15.d
-
 	duration = 1
 	event_image = {
 		video = "europenorthamerica_springtime_of_nations"
 	}
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
-
 	icon = "gfx/interface/icons/event_icons/event_scales.dds"
-
 	immediate = {
 		ruler = {
 			save_scope_as = tsar_scope
@@ -1019,147 +998,198 @@ mhf_events.15 = {
 			save_scope_as = lenin_scope
 		}
 		create_country = {
-					tag = WRU
-					origin = root
-					
-					state = s:STATE_TRANS_BAIKAL.region_state:RUS
-				}
-				create_country = {
-					tag = SRU
-					origin = root
-					
-					state = s:STATE_KRASNOYARSK.region_state:RUS
-				}
-				create_country = {
-					tag = DON
-					origin = root
-
-					state = s:STATE_ROSTOV.region_state:RUS
-				}
-				create_country = {
-					tag = CIR
-					origin = root
-
-					state = s:STATE_KUBAN.region_state:RUS
-				}
-				create_country = {
-					tag = MAX
-					origin = root
-
-					state = s:STATE_TAURIDA.region_state:RUS
-				}
-				# SRU, DON, CIR을 WRU의 자치령으로 설정
-				c:WRU = {
-					
-				}
-				
-				c:RUS = {
-					every_scope_state = {
-						limit = {
-							OR = {
-					state_region = s:STATE_CREMEA
-					state_region = s:STATE_BESSARABIA
-					state_region = s:STATE_KUBAN
-					state_region = s:STATE_ROSTOV
-					state_region = s:STATE_KHERSON
-							}
-						}
-						set_state_owner = c:SRU
-					}
-					c:MAX = {
-						save_scope_as = max_scope
-					}
-					create_diplomatic_pact = {
-						country = scope:max_scope
-						type = dominion
-					}
-				
-					every_scope_state = {
-						limit = {
-							OR = {
-					state_region = s:STATE_ARKHANGELSK
-					state_region = s:STATE_VOLOGDA
-					state_region = s:STATE_NENETSIA
-					state_region = s:STATE_KURSK
-					state_region = s:STATE_NIZHNY_NOVGOROD
-					state_region = s:STATE_CHEBOKSARY
-					state_region = s:STATE_RYAZAN
-					state_region = s:STATE_SARATOV
-					state_region = s:STATE_TAMBOV
-					state_region = s:STATE_YAROSLAVL
-					state_region = s:STATE_CHERNIGOV
-					state_region = s:STATE_KHARKOV
-					state_region = s:STATE_KIEV
-					state_region = s:STATE_TAURIDA
-					state_region = s:STATE_VOLHYNIA
-					state_region = s:STATE_GRODNO
-					state_region = s:STATE_MINSK
-					state_region = s:STATE_MOLGILEV
-					state_region = s:STATE_VITEBSK
-					state_region = s:STATE_LUBLIN
-					state_region = s:STATE_POLOCK
-					state_region = s:STATE_WARSZAWA
-					state_region = s:STATE_DOBRUDJA
-					state_region = s:STATE_SOUTH_LIVONIA
-					state_region = s:STATE_LITHUANIA
-					state_region = s:STATE_VILNIUS
-					state_region = s:STATE_EAST_KARELIA
-					state_region = s:STATE_KOLA
-					state_region = s:STATE_ASTRAKHAN
-					state_region = s:STATE_KALMYKIA
-					state_region = s:STATE_STAVROPOL
-					state_region = s:STATE_KARS
-					state_region = s:STATE_BAKU
-					state_region = s:STATE_DAGESTAN
-					state_region = s:STATE_NORTH_CAUCASUS
-					state_region = s:STATE_TIFLIS
-					state_region = s:STATE_ELIZAVETPOL
-					state_region = s:STATE_ARMENIA
-					state_region = s:STATE_CHELYABINSK
-					state_region = s:STATE_KAZAN
-					state_region = s:STATE_PERM
-					state_region = s:STATE_SAMARA
-					state_region = s:STATE_URAL
-					state_region = s:STATE_UFA
-					state_region = s:STATE_VYATKA
-					state_region = s:STATE_AKMOLINSK
-					state_region = s:STATE_URALSK
-					state_region = s:STATE_KRASNOYARSK
-					state_region = s:STATE_OB
-					state_region = s:STATE_SURGUT
-					state_region = s:STATE_TOMSK
-					state_region = s:STATE_TOBOLSK
-					state_region = s:STATE_UPPER_YENISEYSK
-					state_region = s:STATE_BURYATIA
-					state_region = s:STATE_IRKUTSK
-					state_region = s:STATE_CHUKOTKA
-					state_region = s:STATE_IRKUTSK
-					state_region = s:STATE_KAMCHATKA
-					state_region = s:STATE_KOLYMA
-					state_region = s:STATE_OKHOTSK
-					state_region = s:STATE_YAKUTSK
-							}
-						}
-						set_state_owner = c:WRU
-					}
-				}
-
-
-				
-
-
-				}
-			
-
-
+			tag = WRU
+			origin = root
+			state = s:STATE_TRANS_BAIKAL.region_state:RUS
+		}
+		create_country = {
+			tag = SRU
+			origin = root
+			state = s:STATE_KRASNOYARSK.region_state:RUS
+		}
+		create_country = {
+			tag = MAX
+			origin = root
+			state = s:STATE_TAURIDA.region_state:RUS
+		}
 	
+		# SRU, DON, CIR을 WRU의 자치령으로 설정
+		c:WRU = {
+			create_character = {
+				template = kolchak_character_template
+				on_created = {
+					set_variable = kolchak_var
+				}
+				save_scope_as = kolchak_scope
+			}
+			scope:kolchak_scope = {
+				set_character_as_ruler = yes
+			}
+		}
+		c:SRU = {
+			save_scope_as = sru_scope
+			create_character = {
+				template = denikin_charater_template
+				on_created = {
+					set_variable = denikin_var
+				}
+			}
+			random_scope_character = {
+				limit = {
+					has_variable = denikin_var
+				}
+				save_scope_as = denikin_scope
+			}
+			scope:denikin_scope = {
+				set_character_as_ruler = yes
+			}
+		}
+		c:UBD = {
+			save_scope_as = ubd_scope
+			create_character = {
+				template = yudenich_character_template
+				on_created = {
+					set_variable = yudenich_var
+				}
+				save_scope_as = yudenich_scope
+			}
+			random_scope_character = {
+				limit = {
+					has_variable = yudenich_var
+				}
+				save_scope_as = yudenich_scope
+			}
+			scope:yudenich_scope = {
+				set_character_as_ruler = yes
+			}
+		}
+		c:FIN = {
+			save_scope_as = fin_scope
+		}
+		c:RUS = {
+			c:MAX = {
+				save_scope_as = max_scope
+			}
+			create_diplomatic_pact = {
+				country = scope:max_scope
+				type = protectorate
+			}
+			if = {
+				limit = {
+					has_diplomatic_pact = {
+						country = c:UBD
+						type = protectorate
+					}
+				}
+				remove_diplomatic_pact = {
+					country = c:UBD
+					type = protectorate
+				}
+			}
+			if = {
+				limit = {
+					has_diplomatic_pact = {
+						country = c:UBD
+						type = puppet
+					}
+				}
+				remove_diplomatic_pact = {
+					country = c:UBD
+					type = puppet
+				}
+			}
+			
+			every_scope_state = {
+				limit = {
+					OR = {
+						state_region = s:STATE_CRIMEA
+						state_region = s:STATE_BESSARABIA
+						state_region = s:STATE_KUBAN
+						state_region = s:STATE_ROSTOV
+						state_region = s:STATE_CHERSON
+					}
+				}
+				set_state_owner = c:SRU #남러시아 정부 주 제공
+			}
+			every_scope_state = {
+				limit = {
+					OR = {
+						state_region = s:STATE_ARKHANGELSK
+						state_region = s:STATE_CHUVASHIA
+						state_region = s:STATE_GALICH
+						state_region = s:STATE_NENETSIA
+						state_region = s:STATE_KURSK
+						state_region = s:STATE_NIZHNY_NOVGOROD
+						state_region = s:STATE_CHEBOKSARY
+						state_region = s:STATE_RYAZAN
+						state_region = s:STATE_TARTARIA
+						state_region = s:STATE_TAMBOV
+						state_region = s:STATE_YAROSLAVL
+						state_region = s:STATE_CHERNIGOV
+						state_region = s:STATE_KHARKOV
+						state_region = s:STATE_KIEV
+						state_region = s:STATE_TAURIDA
+						state_region = s:STATE_VOLHYNIA
+						state_region = s:STATE_GRODNO
+						state_region = s:STATE_MINSK
+						state_region = s:STATE_MOLGILEV
+						state_region = s:STATE_VITEBSK
+						state_region = s:STATE_LUBLIN
+						state_region = s:STATE_POLOCK
+						state_region = s:STATE_WARSZAWA
+						state_region = s:STATE_DOBRUDJA
+						state_region = s:STATE_SOUTH_LIVONIA
+						state_region = s:STATE_LITHUANIA
+						state_region = s:STATE_VILNIUS
+						state_region = s:STATE_EAST_KARELIA
+						state_region = s:STATE_KOLA
+						state_region = s:STATE_ASTRAKHAN
+						state_region = s:STATE_KALMYKIA
+						state_region = s:STATE_STAVROPOL
+						state_region = s:STATE_KARS
+						state_region = s:STATE_BAKU
+						state_region = s:STATE_DAGESTAN
+						state_region = s:STATE_NORTH_CAUCASUS
+						state_region = s:STATE_GREATER_CAUCASUS
+						state_region = s:STATE_ELIZAVETPOL
+						state_region = s:STATE_ARMENIA
+						state_region = s:STATE_CHELYABINSK
+						state_region = s:STATE_KAZAN
+						state_region = s:STATE_PERM
+						state_region = s:STATE_SAMARA
+						state_region = s:STATE_URAL
+						state_region = s:STATE_UFA
+						state_region = s:STATE_VYATKA
+						state_region = s:STATE_AKMOLINSK
+						state_region = s:STATE_URALSK
+						state_region = s:STATE_KRASNOYARSK
+						state_region = s:STATE_OB
+						state_region = s:STATE_SURGUT
+						state_region = s:STATE_TOMSK
+						state_region = s:STATE_TOBOLSK
+						state_region = s:STATE_UPPER_YENISEYSK
+						state_region = s:STATE_BURYATIA
+						state_region = s:STATE_IRKUTSK
+						state_region = s:STATE_CHUKOTKA
+						state_region = s:STATE_IRKUTSK
+						state_region = s:STATE_KAMCHATKA
+						state_region = s:STATE_KOLYMA
+						state_region = s:STATE_OKHOTSK
+						state_region = s:STATE_YAKUTSK
+						state_region = s:STATE_KRASNOYARSK
+					}
+				}
+				set_state_owner = c:WRU #백색 러시아 주 제공
+			}
+		}
+	}
 	option = {
 		name = mhf_events.15.a
 		default_option = yes
-		ai_chance = { base = 100 }
-		
+		ai_chance = {
+			base = 100
+		}
 		# 백군(차르 지지 세력) 생성 및 내전 시작
-
 		scope:russia_scope = {
 			activate_law = law_type:law_council_republic
 			activate_law = law_type:law_state_atheism
@@ -1169,68 +1199,110 @@ mhf_events.15 = {
 			activate_law = law_type:law_cooperative_ownership
 			activate_law = law_type:law_collectivized_agriculture
 			activate_law = law_type:law_public_schools
-					add_modifier = {
-						name = rcw_debuff
-						days = 3650
-					}
+			add_modifier = {
+				name = rcw_debuff
+				days = 3650
+			}
 		}
 		c:WRU = {
-					save_scope_as = white_russia_scope
-				}
-				
+			save_scope_as = white_russia_scope
+		}
+		c:SRU = {
+			save_scope_as = sru_scope
+		}
+		c:UBD = {
+			save_scope_as = ubd_scope
+		}
+		c:FIN = {
+			save_scope_as = fin_scope
+		}
+		scope:ubd_scope = {
+			add_modifier = {
+				name = rcw_debuff
+				days = 3650
+			}
+			create_diplomatic_play = {
+				name = rus_cw
+				target_state = c:RUS.capital
+				war = yes
+				annex_as_civil_war = yes
+				type = dp_revolution
+			}
+		}
+		scope:fin_scope = {
+			add_modifier = {
+				name = rcw_debuff
+				days = 3650
+			}
+			create_diplomatic_play = {
+			target_country = scope:russia_scope
+			type = dp_independence
+			add_war_goal = { 
+				holder = scope:overlord_scope 
+				target_country = ROOT 
+				type = annex_country 
+			}
+			}
+		}
+		scope:white_russia_scope = {
+			add_modifier = {
+				name = rcw_debuff
+				days = 3650
+			}
+			create_diplomatic_play = {
+				name = rus_cw
+				target_state = c:RUS.capital
+				war = yes
+				annex_as_civil_war = yes
+				type = dp_revolution
+			}
+		}
+		scope:sru_scope = {
+			add_modifier = {
+				name = rcw_debuff
+				days = 3650
+			}
 
-				scope:white_russia_scope = {	
-					add_modifier = {
-						name = rcw_debuff
-						days = 3650
-					}
-					create_diplomatic_play = {
-            		name = rus_cw
-
-            		target_state = c:RUS.capital
-
-            		war = yes
-            		annex_as_civil_war = yes
-
-            		type = dp_revolution
-
-        			}
-				}
+			create_diplomatic_play = {
+				name = rus_cw
+				target_state = c:RUS.capital
+				war = yes
+				annex_as_civil_war = yes
+				type = dp_revolution
+			}
+		}
+		
 		scope:lenin_scope = {
 			set_as_interest_group_leader = yes
 			set_character_as_ruler = yes
 		}
-				ig:ig_trade_unions ?={
-					add_modifier = {
-						name = trade_unions_boost_rus
-						days = -1
-					}
-				}
-				root = {
-					add_modifier = {
-						name = lenin_legitimacy_boost
-						days = -1
-					}
-				}
+		ig:ig_trade_unions ?= {
+			add_modifier = {
+				name = trade_unions_boost_rus
+				days = -1
+			}
+		}
+		root = {
+			add_modifier = {
+				name = lenin_legitimacy_boost
+				days = -1
+			}
+		} # 내전 후에 적용으로 바꿀 것
 	}
 }
 
 mhf_events.16 = {
 	type = country_event
 	placement = root
-
 	title = mhf_events.16.t
 	desc = mhf_events.16.d
-
 	duration = 1
 	event_image = {
 		video = "ip3_police_raid"
 	}
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
-
 	icon = "gfx/interface/icons/event_icons/event_scales.dds"
-
 	trigger = {
 		has_variable = mhf_events_13_fired
 		NOT = {
@@ -1239,7 +1311,6 @@ mhf_events.16 = {
 		}
 		c:RUS ?= this
 	}
-
 	immediate = {
 		set_variable = mhf_events_16_fired
 		create_character = {
@@ -1262,14 +1333,15 @@ mhf_events.16 = {
 	option = {
 		name = mhf_events.16.a
 		default_option = yes
-		ai_chance = { base = 100 }
+		ai_chance = {
+			base = 100
+		}
 		scope:russia_scope = {
 			remove_modifier = rcw_debuff
 			add_modifier = {
 				name = red_army_boost
-				days = 365 
+				days = 365
 			}
 		}
 	}
-
 }
