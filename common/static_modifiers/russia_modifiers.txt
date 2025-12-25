@@ -20,3 +20,8 @@ red_army_boost = {
 	military_formation_mobilization_speed_mult = 0.5
 	military_formation_movement_speed_mult = 0.5
 }
+white_army_boost = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_rifle_positive.dds
+	unit_army_offense_mult = 0.25
+}
+

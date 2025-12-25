@@ -1,0 +1,11 @@
+﻿black_baron = {
+    type = personality
+	texture = "gfx/interface/icons/character_trait_icons/special_character_traits/special_character_great_reformer.dds"
+
+    character_modifier = {
+        character_popularity_add = 50
+    }
+	command_modifier = {
+		unit_offense_mult = 0.2
+	}
+}

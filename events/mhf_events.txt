@@ -198,12 +198,12 @@ mhf_events.3 = {
 			base = 20
 		}
 		random_list = {
-			60 = {
+			10 = {
 				root = {
 					annex = c:AUS
 				}
 			}
-			40 = {
+			90 = {
 				root = {
 					change_relations = {
 						country = c:AUS
@@ -332,9 +332,7 @@ mhf_events.5 = {
 		c:GBR ?= this
 		game_date >= 1836.1.1
 		root = {
-			ruler ?= {
-				has_template = gbr_queen_victoria_template
-			}
+			has_technology_researched = pan-nationalism
 		}
 		NOT = {
 			has_variable = mhf_events_5_fired
@@ -901,7 +899,7 @@ mhf_events.13 = {
 			add_radicals = {
 				culture = cu:russian
 				value = {
-					add = huge_radicals
+					add = medium_radicals
 				}
 			}
 		}
@@ -917,7 +915,7 @@ mhf_events.13 = {
 		add_radicals = {
 			culture = cu:russian
 			value = {
-				add = huge_radicals
+				add = small_radicals
 			}
 		}
 	}
@@ -1185,6 +1183,7 @@ mhf_events.15 = {
 	}
 	option = {
 		name = mhf_events.15.a
+		custom_tooltip = mhf_events.15.a.d
 		default_option = yes
 		ai_chance = {
 			base = 100
@@ -1289,8 +1288,97 @@ mhf_events.15 = {
 			}
 		} # 내전 후에 적용으로 바꿀 것
 	}
-}
+	option = {
+		name = mhf_events.15.b
+		custom_tooltip = mhf_events.15.b.d
+		ai_chance = {
+			base = 0
+		}
+		scope:russia_scope = {
+			# 옵션 효과 작성
+			activate_law = law_type:law_council_republic
+			activate_law = law_type:law_state_atheism
+			activate_law = law_type:law_elected_bureaucrats
+			activate_law = law_type:law_universal_suffrage
+			activate_law = law_type:law_cooperative_ownership
+			activate_law = law_type:law_collectivized_agriculture
+			activate_law = law_type:law_public_schools
+			add_modifier = {
+				name = rcw_debuff
+				days = 3650
+			}
+		}
+		c:WRU = {
+			save_scope_as = white_russia_scope
+		}
+		c:SRU = {
+			save_scope_as = sru_scope
+		}
+		c:UBD = {
+			save_scope_as = ubd_scope
+		}
+		c:FIN = {
+			save_scope_as = fin_scope
+		}
+		scope:ubd_scope = {
+			add_modifier = {
+				name = rcw_debuff
+				days = 3650
+			}
+			create_diplomatic_play = {
+				name = rus_cw
+				target_state = c:RUS.capital
+				war = yes
+				annex_as_civil_war = yes
+				type = dp_revolution
+			}
+		}
+		scope:fin_scope = {
+			add_modifier = {
+				name = rcw_debuff
+				days = 3650
+			}
+			create_diplomatic_play = {
+			target_country = scope:russia_scope
+			type = dp_independence
+			add_war_goal = { 
+				holder = scope:overlord_scope 
+				target_country = ROOT 
+				type = annex_country 
+			}
+			}
+		}
+		scope:white_russia_scope = {
+			add_modifier = {
+				name = rcw_debuff
+				days = 3650
+			}
+			create_diplomatic_play = {
+				name = rus_cw
+				target_state = c:RUS.capital
+				war = yes
+				annex_as_civil_war = yes
+				type = dp_revolution
+			}
+		}
+		scope:sru_scope = {
+			add_modifier = {
+				name = rcw_debuff
+				days = 3650
+			}
 
+			create_diplomatic_play = {
+				name = rus_cw
+				target_state = c:RUS.capital
+				war = yes
+				annex_as_civil_war = yes
+				type = dp_revolution
+			}
+		# 옵션 효과 작성
+		}
+		play_as = c:WRU
+	}
+}
 mhf_events.16 = {
 	type = country_event
 	placement = root
@@ -1310,9 +1398,15 @@ mhf_events.16 = {
 			has_variable = trotsky_spawn
 		}
 		c:RUS ?= this
+		is_ai = no
 	}
-	immediate = {
+	immediate = { # 조건문 다시 작성 
 		set_variable = mhf_events_16_fired
+		NOT = {
+			any_scope_character = {
+				template = rus_leon_trotsky_character_template
+			}
+		}
 		create_character = {
 			template = rus_leon_trotsky_character_template
 			on_created = {
@@ -1342,6 +1436,77 @@ mhf_events.16 = {
 				name = red_army_boost
 				days = 365
 			}
+			activate_law = law_type:law_mass_conscription
 		}
 	}
+}
+mhf_events.17 = {
+	type = country_event
+	placement = root
+	title = mhf_events.17.t
+	desc = mhf_events.17.d
+	duration = 1
+	event_image = {
+		video = "europenorthamerica_rich_and_poor"
+	}
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	trigger = {
+		NOT = {
+			has_variable = mhf_events_17_fired
+		}
+		c:WRU ?= this
+		is_ai = no
+	}
+	
+		immediate = {
+		set_variable = mhf_events_17_fired
+		root = {
+			save_scope_as = wru_scope
+		}
+			create_character = {
+				template = rus_general_wrangel
+				on_created = {
+					set_variable = wrangel_var
+				}
+			}
+			random_scope_character = {
+				limit = {
+					has_variable = wrangel_var
+				}
+				save_scope_as = wrangel_scope
+			}
+		
+	}
+	
+	option = {
+		name = mhf_events.17.a
+		default_option = yes
+		ai_chance = {
+			base = 100
+		}
+		scope:wru_scope = {
+			remove_modifier = rcw_debuff
+			add_modifier = {
+				name = white_army_boost
+				days = 365
+			}
+		}
+	}
+}
+
+mhf_events.18 = {
+	type = country_event
+	placement = root
+	gui_window = event_window_1char_tabloid
+	left_icon = scope:hitler_scope
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	title = mhf_events.18.t
+	desc = mhf_events.18.d
+	flavor = mhf_events.18.f
+	duration = 3
+	
 }
