@@ -1003,6 +1003,12 @@ mhf_events.15 = {
 			}
 			save_scope_as = lenin_scope
 		}
+
+		
+		scope:lenin_scope = {
+			set_as_interest_group_leader = yes
+			set_character_as_ruler = yes
+		}
 		create_country = {
 			tag = WRU
 			origin = root
@@ -1021,6 +1027,8 @@ mhf_events.15 = {
 	
 		# SRU, DON, CIR을 WRU의 자치령으로 설정
 		c:WRU = {
+
+		set_variable = mhf_events_15_fired
 			create_character = {
 				template = kolchak_character_template
 				on_created = {
@@ -1073,6 +1081,8 @@ mhf_events.15 = {
 			save_scope_as = fin_scope
 		}
 		c:RUS = {
+
+		set_variable = mhf_events_15_fired
 			c:MAX = {
 				save_scope_as = max_scope
 			}
@@ -1202,7 +1212,7 @@ mhf_events.15 = {
 			activate_law = law_type:law_state_atheism
 			activate_law = law_type:law_elected_bureaucrats
 			activate_law = law_type:law_mass_conscription
-			activate_law = law_type:law_universal_suffrage
+			activate_law = law_type:law_single_party_state
 			activate_law = law_type:law_cooperative_ownership
 			activate_law = law_type:law_collectivized_agriculture
 			activate_law = law_type:law_public_schools
@@ -1278,11 +1288,6 @@ mhf_events.15 = {
 				type = dp_revolution
 			}
 		}
-		
-		scope:lenin_scope = {
-			set_as_interest_group_leader = yes
-			set_character_as_ruler = yes
-		}
 		ig:ig_trade_unions ?= {
 			add_modifier = {
 				name = trade_unions_boost_rus
@@ -1303,10 +1308,10 @@ mhf_events.15 = {
 			activate_law = law_type:law_council_republic
 			activate_law = law_type:law_state_atheism
 			activate_law = law_type:law_elected_bureaucrats
-			activate_law = law_type:law_universal_suffrage
 			activate_law = law_type:law_cooperative_ownership
 			activate_law = law_type:law_collectivized_agriculture
 			activate_law = law_type:law_public_schools
+			activate_law = law_type:law_single_party_state
 			add_modifier = {
 				name = rcw_debuff
 				days = 3650
@@ -1396,38 +1401,36 @@ mhf_events.16 = {
 	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
 	icon = "gfx/interface/icons/event_icons/event_scales.dds"
 	trigger = {
-		has_variable = mhf_events_13_fired
+		has_variable = mhf_events_15_fired
 		NOT = {
 			has_variable = mhf_events_16_fired
-			has_variable = trotsky_spawn
+			has_global_variable = rcw_end
 		}
 		c:RUS ?= this
 		is_ai = no
 	}
 	immediate = { # 조건문 다시 작성 
 		set_variable = mhf_events_16_fired
+		if = {
+			limit = {
 		NOT = {
 			any_scope_character = {
 				template = rus_leon_trotsky_character_template
 			}
 		}
+			}
 		create_character = {
 			template = rus_leon_trotsky_character_template
 			on_created = {
 				set_variable = trotsky_var
 			}
-		}
-		random_scope_character = {
-			limit = {
-				has_variable = trotsky_var
-			}
 			save_scope_as = trotsky_scope
-		}
 		set_global_variable = trotsky_spawn
+		}
 		root = {
 			save_scope_as = russia_scope
 		}
-	}
+	}}
 	option = {
 		name = mhf_events.16.a
 		default_option = yes
@@ -1459,6 +1462,7 @@ mhf_events.17 = {
 	trigger = {
 		NOT = {
 			has_variable = mhf_events_17_fired
+			has_global_variable = rcw_end
 		}
 		c:WRU ?= this
 		is_ai = no
@@ -1491,8 +1495,10 @@ mhf_events.17 = {
 mhf_events.18 = {
 	type = country_event
 	placement = root
-	gui_window = event_window_1char_tabloid
-	left_icon = scope:hitler_scope
+	
+	event_image = {
+		video = "ep1_printing_press"
+	}
 	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
 	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
 	icon = "gfx/interface/icons/event_icons/event_scales.dds"
@@ -1502,6 +1508,7 @@ mhf_events.18 = {
 	duration = 1
 	
 	trigger = {
+		has_variable = mhf_events_16_fired
 		NOT = {
 			has_variable = mhf_events_18_fired
 			exists = c:WRU
@@ -1511,6 +1518,7 @@ mhf_events.18 = {
 
 	}
 	immediate = {
+		set_global_variable = rcw_end
 		set_variable = mhf_events_18_fired
 		root = {
 			save_scope_as = russia_scope
