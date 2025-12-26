@@ -1,7 +1,7 @@
 ﻿l_korean:
   mhf_events.4.t: "돌아온 탕아"
-  mhf_events.4.d: "[SCOPE.sCountry('usa_scope').GetName]는 [SCOPE.sCountry('mexico_scope').GetName]와의 길어진 영토 분쟁으로 인해 여러 문제를 겪고 있었다. 그에 따라 [SCOPE.sCountry('usa_scope').GetName]엔 다시 한번 [SCOPE.sCountry('uk_scope').GetName]의 품으로 돌아가고자 하는 여론이 형성되기 시작하였다."
-  mhf_events.4.a: "잃었던 자식이 돌아오고 있다."
+  mhf_events.4.d: "[SCOPE.sCountry('usa_scope').GetName]는 길어진 전쟁 수행으로 인해 국가적 부담이 과중되고 있었다. 그에 따라 [SCOPE.sCountry('usa_scope').GetName]엔 다시 한번 [SCOPE.sCountry('uk_scope').GetName]의 품으로 돌아가고자 하는 여론이 형성되기 시작하였다."
+  mhf_events.4.a: "두 팔 벌려 돌아온 자식을 환영하라."
   mhf_events.4.b: "그들에게 도움을 주어야 한다."
   mhf_events.4.c: "[SCOPE.sCountry('usa_scope').GetName]는 스스로의 길을 가야 한다."
   treaty_name_us_uk: "[SCOPE.sCountry('usa_scope').GetName] - [SCOPE.sCountry('uk_scope').GetName] 연합 조약"
@@ -70,5 +70,5 @@
   light_military_fed: "제국 소규모 군사 통합"
   mhf_events.5_done.a: "제국은 새로운 미래를 향해 나아간다."
   mhf_events.5_fail.a: "제국 연방은 실패했지만, 여전히 밝은 미래가 우릴 기다린다."
-  mhf_events.18.t: "시나이 반도 요구"
-  mhf_events.18.d: "[SCOPE.sCountry('uk_scope').GetName]는 본토와 인도 사이를 잇는 무역로의 핵심인 시나이 반도의 할양을 요구하고 있다. 그 대가로 [SCOPE.sCountry('egypt_scope').GetName]에게 군사 지원과 독립을 보장하는 조건을 제시했다."
+  #mhf_events.18.t: "시나이 반도 요구"
+  #mhf_events.18.d: "[SCOPE.sCountry('uk_scope').GetName]는 본토와 인도 사이를 잇는 무역로의 핵심인 시나이 반도의 할양을 요구하고 있다. 그 대가로 [SCOPE.sCountry('egypt_scope').GetName]에게 군사 지원과 독립을 보장하는 조건을 제시했다."

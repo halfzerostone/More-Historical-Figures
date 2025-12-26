@@ -25,3 +25,8 @@ white_army_boost = {
 	unit_army_offense_mult = 0.25
 }
 
+rebuild_nation_rus = {
+	icon = gfx/interface/icons/timed_modifier_icons/modifier_gear_positive.dds
+	unit_army_offense_mult = 0.25
+	building_construction_sector_throughput_add = 0.15
+}
