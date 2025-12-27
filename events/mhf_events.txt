@@ -1411,14 +1411,7 @@ mhf_events.16 = {
 	}
 	immediate = { # 조건문 다시 작성 
 		set_variable = mhf_events_16_fired
-		if = {
-			limit = {
-		NOT = {
-			any_scope_character = {
-				template = rus_leon_trotsky_character_template
-			}
-		}
-			}
+		
 		create_character = {
 			template = rus_leon_trotsky_character_template
 			on_created = {
@@ -1430,7 +1423,7 @@ mhf_events.16 = {
 		root = {
 			save_scope_as = russia_scope
 		}
-	}}
+	}
 	option = {
 		name = mhf_events.16.a
 		default_option = yes
@@ -1509,10 +1502,16 @@ mhf_events.18 = {
 	
 	trigger = {
 		has_variable = mhf_events_16_fired
-		NOT = {
+		AND = {
+			NOT = {
 			has_variable = mhf_events_18_fired
+			}
+			NOT = {
 			exists = c:WRU
+			}
+			NOT = {
 			exists = c:SRU
+			}
 		}
 		c:RUS ?= this
 
@@ -1562,4 +1561,16 @@ mhf_events.19 = {
 	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
 	icon = "gfx/interface/icons/event_icons/event_scales.dds"
 	
+	trigger = {
+		has_variable = mhf_events_17_fired
+		AND = {
+			NOT = {
+			has_variable = mhf_events_19_fired
+			}
+			NOT = {
+			exists = c:RUS
+			}
+		}
+		c:WRU ?= this
+	}
 }
