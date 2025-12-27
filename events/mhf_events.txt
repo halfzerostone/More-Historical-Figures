@@ -1522,16 +1522,6 @@ mhf_events.18 = {
 		root = {
 			save_scope_as = russia_scope
 		}
-		scope:russia_scope = {
-			add_modifier = {
-				name = lenin_legitimacy_boost
-				days = -1
-			}
-			add_modifier = {
-				name = rebuild_nation_rus
-				days = 1825
-			}
-		}
 	}
 	option = {
 		name = mhf_events.18.a
@@ -1544,6 +1534,17 @@ mhf_events.18 = {
 			culture = cu:russian
 			value = {
 				add = small_radicals
+			}
+		}
+
+		scope:russia_scope = {
+			add_modifier = {
+				name = lenin_legitimacy_boost
+				days = -1
+			}
+			add_modifier = {
+				name = rebuild_nation_rus
+				days = 1825
 			}
 		}
 	}
@@ -1579,11 +1580,8 @@ mhf_events.19 = {
 		root = {
 			save_scope_as = wru_scope
 		}
-		scope:wru_scope = {
-			add_modifier = {
-				name = rebuild_nation_rus
-				days = 1825
-			}
+		c:RUS = {
+			save_scope_as = rus_scope
 		}
 	}
 	option = { # 차르 복위
@@ -1593,11 +1591,51 @@ mhf_events.19 = {
 		ai_chance = {
 			base = 80
 		}
-		# 옵션 효과 작성
+		play_as = c:RUS
+		create_character = {
+			template = RUS_alexei_ii
+			on_created = {
+				set_variable = alexei_var
+			}
+			save_scope_as = alexei_scope
+		}
+		alexei_scope = {
+			set_character_as_ruler = yes
+		}
+		scope:rus_scope = {
+			activate_law = law_type:law_monarchy
+			activate_law = law_type:law_autocracy
+			activate_law = law_type:law_appointed_bureaucrats
+			activate_law = law_type:law_interventionism
+			activate_law = law_type:law_tenant_farmers
+			activate_law = law_type:law_religious_schools
+
+			annex = c:WRU
+			annex = c:UBD
+			add_modifier = {
+				name = rebuild_nation_rus
+				days = 1825
+			}
+		}
 		add_loyalists = {
 			culture = cu:russian
 			value = {
 				add = small_radicals
+			}
+		}
+		random_list = {
+			20 = {
+				root = {
+					annex = c:SRU
+				}
+			}
+			80 = {
+				root = {
+					change_relations = {
+						country = c:SRU
+						value = -100
+					}
+				}
 			}
 		}
 	}
@@ -1607,7 +1645,23 @@ mhf_events.19 = {
 		ai_chance = {
 			base = 15
 		}
-		# 옵션 효과 작성
+		
+		play_as = c:RUS
+		scope:rus_scope = {
+			activate_law = law_type:law_presidential_republic
+			activate_law = law_type:law_universal_suffrage
+			activate_law = law_type:law_appointed_bureaucrats
+			activate_law = law_type:law_interventionism
+			activate_law = law_type:law_tenant_farmers
+			activate_law = law_type:law_religious_schools
+
+			annex = c:WRU
+			annex = c:UBD
+			add_modifier = {
+				name = rebuild_nation_rus
+				days = 1825
+			}
+		}
 		add_radicals = {
 			culture = cu:russian
 			value = {
@@ -1620,6 +1674,23 @@ mhf_events.19 = {
 		custom_tooltip = mhf_events.19.c.d
 		ai_chance = {
 			base = 5
+		}
+
+		play_as = c:RUS
+		scope:rus_scope = {
+			activate_law = law_type:law_monarchy
+			activate_law = law_type:law_autocracy
+			activate_law = law_type:law_appointed_bureaucrats
+			activate_law = law_type:law_interventionism
+			activate_law = law_type:law_tenant_farmers
+			activate_law = law_type:law_religious_schools
+
+			annex = c:WRU
+			annex = c:UBD
+			add_modifier = {
+				name = rebuild_nation_rus
+				days = 1825
+			}
 		}
 		# 옵션 효과 작성
 		add_radicals = {
