@@ -1573,4 +1573,60 @@ mhf_events.19 = {
 		}
 		c:WRU ?= this
 	}
+	immediate = {
+		set_global_variable = rcw_end
+		set_variable = mhf_events_19_fired
+		root = {
+			save_scope_as = wru_scope
+		}
+		scope:wru_scope = {
+			add_modifier = {
+				name = rebuild_nation_rus
+				days = 1825
+			}
+		}
+	}
+	option = { # 차르 복위
+		name = mhf_events.19.a
+		custom_tooltip = mhf_events.19.a.d
+		default_option = yes
+		ai_chance = {
+			base = 80
+		}
+		# 옵션 효과 작성
+		add_loyalists = {
+			culture = cu:russian
+			value = {
+				add = small_radicals
+			}
+		}
+	}
+	option = { # 민주공화국 선포
+		name = mhf_events.19.b
+		custom_tooltip = mhf_events.19.b.d
+		ai_chance = {
+			base = 15
+		}
+		# 옵션 효과 작성
+		add_radicals = {
+			culture = cu:russian
+			value = {
+				add = small_radicals
+			}
+		}
+	}
+	option = {
+		name = mhf_events.19.c
+		custom_tooltip = mhf_events.19.c.d
+		ai_chance = {
+			base = 5
+		}
+		# 옵션 효과 작성
+		add_radicals = {
+			culture = cu:russian
+			value = {
+				add = small_radicals
+			}
+		}
+	}
 }
