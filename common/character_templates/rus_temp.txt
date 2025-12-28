@@ -46,3 +46,19 @@ yudenich_character_template = {
 		basic_offensive_planner
 	}
 }
+
+stalin_character_template = {
+	first_name = Ioseb
+	last_name = Stalin
+	historical = yes
+	culture = cu:georgian
+	interest_group = ig:ig_trade_unions
+	female = no
+	birth_date = 1878.12.18
+	dna = dna_joseph_stalin
+	ideology = ideology_vanguaridist
+	traits = {
+		persistent
+		charismatic
+	}
+}

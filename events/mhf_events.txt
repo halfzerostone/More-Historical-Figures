@@ -1206,12 +1206,10 @@ mhf_events.15 = {
 		ai_chance = {
 			base = 100
 		}
-		# 백군(차르 지지 세력) 생성 및 내전 시작
 		scope:russia_scope = {
 			activate_law = law_type:law_council_republic
 			activate_law = law_type:law_state_atheism
 			activate_law = law_type:law_elected_bureaucrats
-			activate_law = law_type:law_mass_conscription
 			activate_law = law_type:law_single_party_state
 			activate_law = law_type:law_cooperative_ownership
 			activate_law = law_type:law_collectivized_agriculture
@@ -1294,8 +1292,10 @@ mhf_events.15 = {
 				days = -1
 			}
 		}
-		root = {
-		} # 내전 후에 적용으로 바꿀 것
+		scope:lenin_scope = {
+			set_as_interest_group_leader = yes
+			set_character_as_ruler = yes
+		}
 	}
 	option = {
 		name = mhf_events.15.b
@@ -1657,6 +1657,7 @@ mhf_events.19 = {
 
 			annex = c:WRU
 			annex = c:UBD
+			annex = c:SRU
 			add_modifier = {
 				name = rebuild_nation_rus
 				days = 1825
@@ -1687,6 +1688,21 @@ mhf_events.19 = {
 
 			annex = c:WRU
 			annex = c:UBD
+		random_list = {
+			30 = {
+				root = {
+					annex = c:SRU
+				}
+			}
+			70 = {
+				root = {
+					change_relations = {
+						country = c:SRU
+						value = -100
+					}
+				}
+			}
+		}
 			add_modifier = {
 				name = rebuild_nation_rus
 				days = 1825
@@ -1699,5 +1715,71 @@ mhf_events.19 = {
 				add = small_radicals
 			}
 		}
+	}
+}
+
+mhf_events.20 = { #레닌의 죽음
+	type = country_event
+	placement = root
+	title = mhf_events.20.t
+	desc = mhf_events.20.d
+	duration = 1
+	event_image = {
+		video = "ip2_cross_cultural_festival"
+	}
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+trigger = {
+	ruler = {
+		has_variable = lenin_var
+	}
+	root = {
+		has_variable = mhf_events_18_fired
+	}
+		c:RUS ?= this
+}
+
+	immediate = {
+		root = {
+			save_scope_as = russia_scope
+		}
+		create_character = {
+			template = stalin_character_template
+			on_created = {
+				set_variable = stalin_var
+			}
+			save_scope_as = stalin_scope
+		set_global_variable = stalin_spawn
+		}
+			random_scope_character = {
+				limit = {
+					has_variable = trotsky_var
+				}
+				save_scope_as = trotsky_scope
+			}
+	}
+	option = {
+		name = mhf_events.20.a
+		custom_tooltip = mhf_events.20.a.d
+		default_option = yes
+		ai_chance = {
+			base = 50
+		}
+		scope:stalin_scope = {
+			set_character_as_ruler = yes
+		}
+		# 옵션 효과 작성
+	}
+	option = {
+		name = mhf_events.20.b
+		custom_tooltip = mhf_events.20.b.d
+		ai_chance = {
+			base = 30
+		}
+		scope:trotsky_scope = {
+			set_character_as_ruler = yes
+		}
+		# 옵션 효과 작성
 	}
 }
