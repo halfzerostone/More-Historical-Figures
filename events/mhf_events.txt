@@ -1783,3 +1783,78 @@ trigger = {
 		# 옵션 효과 작성
 	}
 }
+
+mhf_events.21 = {
+	type = country_event
+	placement = root
+	title = mhf_events.21.t
+	desc = mhf_events.21.d
+	duration = 1
+	event_image = {
+		video = "ip2_cross_cultural_festival"
+	}
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	trigger = {
+		ruler = {
+			has_variable = trotsky_var
+		}
+		c:RUS ?= this
+		root = {
+			has_variable = mhf_events_20_fired
+		}
+		random_country = {
+			limit = {
+				has_technology_researched = socialism
+			}
+		}
+	}
+	immediate = {
+		root = {
+			save_scope_as = russia_scope
+		}
+		random_country = {
+			limit = {
+				has_technology_researched = socialism
+			}
+			save_scope_as = target_scope
+		}
+	}
+	option = {
+		name = mhf_events.21.a
+		default_option = yes
+		ai_chance = {
+			base = 100
+		}
+		scope:target_scope = {
+			# 옵션 효과 작성
+			random_list = {
+				90 = {
+					activate_law = law_type:law_council_republic
+		create_treaty = {
+			name = treaty_name_rus_trotsky
+			first_country = c:RUS
+			second_country = root
+			is_draft = no
+			entered_into_force_on = 1915.10.15
+			binding_period = {
+				years = 10
+			}
+			articles_to_create = {
+				{
+					article = defensive_pact
+				}
+			}
+		}
+				}
+				10 = {
+					change_relations = {
+						country = root
+						value = -50
+					}
+				}
+			}
+		}
+	}
+}

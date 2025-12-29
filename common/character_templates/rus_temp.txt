@@ -55,7 +55,7 @@ stalin_character_template = {
 	interest_group = ig:ig_trade_unions
 	female = no
 	birth_date = 1878.12.18
-	dna = dna_joseph_stalin
+	dna = dna_proundhon #temp
 	ideology = ideology_vanguaridist
 	traits = {
 		persistent
