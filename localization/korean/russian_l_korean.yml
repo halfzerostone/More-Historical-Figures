@@ -62,3 +62,5 @@
  mhf_events.20.b.d: "[SCOPE.sCharacter('trotsky_scope').GetFullName]이 소비에트의 새로운 지도자가 됩니다.\n그는 확률적으로 사회주의를 연구한 국가에서 쿠데타가 일어나 소비에트의 피보호국이 되게 합니다."
  mhf_events.21.t: "연속혁명: [SCOPE.sCountry('target_scope').GetName]"
  mhf_events.21.d: "[SCOPE.sCharacter('trotsky_scope').GetFullName]의 영구혁명론에 따르면, 세계 노동자 국가들의 생존을 위해선 지구 상에 브루주아 국가가 하나도 남지 않을 때까지 충분한 생산력을 갖춘 국가들이 앞장서 프롤레타리아 혁명을 일으켜야 한다. [SCOPE.sCountry('target_scope').GetName]에서의 혁명은 단지 그 증명의 시작일 뿐이다."
+ rebuild_nation_rus: "국가 재건"
+ five_year_plan_rus: "5개년 계획"

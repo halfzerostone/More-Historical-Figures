@@ -1758,6 +1758,7 @@ trigger = {
 				}
 				save_scope_as = trotsky_scope
 			}
+
 	}
 	option = {
 		name = mhf_events.20.a
@@ -1768,6 +1769,12 @@ trigger = {
 		}
 		scope:stalin_scope = {
 			set_character_as_ruler = yes
+		}
+		root = {
+			add_modifier = {
+				name = five_year_plan_rus
+				days = 1825
+			}
 		}
 		# 옵션 효과 작성
 	}
@@ -1835,7 +1842,7 @@ mhf_events.21 = {
 		create_treaty = {
 			name = treaty_name_rus_trotsky
 			first_country = c:RUS
-			second_country = root
+			second_country = scope:target_scope
 			is_draft = no
 			entered_into_force_on = 1915.10.15
 			binding_period = {
