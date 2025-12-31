@@ -1865,3 +1865,27 @@ mhf_events.21 = {
 		}
 	}
 }
+
+mhf_events.22 = { #이집트 오스만 전쟁
+	type = country_event
+	hidden = yes
+	placement = root
+	duration = 0
+	
+	trigger = {
+		c:TUR ?= this
+		NOT = {
+			has_variable = mhf_events_22_fired
+		} 
+
+		any_diplomatic_play = {
+			initiator_is = c:TUR
+			target_is = c:EGY
+			has_play_goal = return_state
+		}
+	}
+	immediate = {
+		set_variable = mhf_events_22_fired
+		set_global_variable = ott_egy_war
+	}
+}
