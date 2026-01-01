@@ -1889,3 +1889,26 @@ mhf_events.22 = { #이집트 오스만 전쟁
 		set_global_variable = ott_egy_war
 	}
 }
+
+mhf_events.23 = {
+	type = country_event
+	hidden = yes
+	placement = root
+	duration = 0
+	
+	trigger = {
+		c:TUR ?= this
+		has_variable = mhf_events_22_fired
+		NOT = {
+		any_diplomatic_play = {
+			initiator_is = c:TUR
+			target_is = c:EGY
+			has_play_goal = return_state
+		}
+		}
+	}
+	immediate = {
+		set_variable = mhf_events_23_fired
+		set_global_variable = ott_egy_war_end
+	}
+}
