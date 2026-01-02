@@ -1910,5 +1910,55 @@ mhf_events.23 = {
 	immediate = {
 		set_variable = mhf_events_23_fired
 		set_global_variable = ott_egy_war_end
+		c:RUS = {
+			save_scope_as = rus_scope
+		}
+		scope:rus_scope = {
+		trigger_event = {
+			id = mhf_events.24
+			days = 7
+		}
+		}
+	}
+}
+
+mhf_events.24 = {
+	type = country_event
+	placement = root
+	title = mhf_events.24.t
+	desc = mhf_events.24.d
+	duration = 1
+	event_image = {
+		video = "ip3_police_raid"
+	}
+	on_created_soundeffect = "event:/SFX/UI/Alerts/event_appear"
+	on_opened_soundeffect = "event:/SFX/Events/misc/1Character_Banner"
+	icon = "gfx/interface/icons/event_icons/event_scales.dds"
+	trigger = {
+		
+		c:RUS ?= this
+	}
+	immediate = { 
+		set_variable = mhf_events_24_fired
+		root = {
+			save_scope_as = rus_scope
+		}
+		c:TUR = {
+			save_scope_as = turkey_scope
+	}
+		c:EGY = {
+			save_scope_as = egypt_scope
+		}
+		c:GBR = {
+			save_scope_as = uk_scope
+		}
+}
+	option = {
+		name = mhf_events.24.a
+		default_option = yes
+		ai_chance = {
+			base = 50
+		}
+		
 	}
 }

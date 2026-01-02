@@ -64,3 +64,7 @@
  mhf_events.21.d: "[SCOPE.sCharacter('trotsky_scope').GetFullName]의 영구혁명론에 따르면, 세계 노동자 국가들의 생존을 위해선 지구 상에 브루주아 국가가 하나도 남지 않을 때까지 충분한 생산력을 갖춘 국가들이 앞장서 프롤레타리아 혁명을 일으켜야 한다. [SCOPE.sCountry('target_scope').GetName]에서의 혁명은 단지 그 증명의 시작일 뿐이다."
  rebuild_nation_rus: "국가 재건"
  five_year_plan_rus: "5개년 계획"
+ mhf_events.24.t: "지중해로의 관문"
+ mhf_events.24.d: "[SCOPE.sCountry('egypt_scope').GetName]와 [SCOPE.sCountry('turkey_scope').GetName] 사이의 전쟁의 결과로 서구 열강들은 오스만이 이집트에게 시리아와 수단, 팔레스타인에 대한 권리를 넘겨주는 대신, 다르다넬스 해협과 보스포루스 해협에 대한 베타적인 통제권을 공인하였다. 이는 러시아의 지중해 진출을 막으려는 [SCOPE.sCountry('uk_scope').GetName]과 여타 유럽 강대국들의 음모일 것이다."
+ mhf_events.24.a: "그들의 통제권을 인정하라."
+ mhf_events.24.b: "[SCOPE.sCountry('turkey_scope').GetName]을 압박해라"
