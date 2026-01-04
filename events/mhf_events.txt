@@ -1959,6 +1959,23 @@ mhf_events.24 = {
 		ai_chance = {
 			base = 50
 		}
-		
+		root = {
+		change_relations = {
+			country = scope:turkey_scope
+			value = 30
+		}
+		}
+	}
+	option = {
+		name = mhf_events.24.b
+		ai_chance = {
+			base = 50
+		}
+		root = {
+		change_relations = {
+			country = scope:turkey_scope
+			value = -30
+		}
+		}
 	}
 }
