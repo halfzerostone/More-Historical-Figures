@@ -1977,5 +1977,26 @@ mhf_events.24 = {
 			value = -30
 		}
 		}
-	}
+		random_list = {
+			70 = {
+				root = {
+					create_diplomatic_play = {
+						name = crimean_war
+						target_country = scope:turkey_scope
+						war = yes
+						type = enforce_treaty_article
+					article = {
+						article = transit_rights
+						source_country = c:RUS
+						target_country = c:TUR
+					}
+				}
+			}
+			30 = {
+				root = {
+					
+				}
+			}
+		}
+	}}
 }
