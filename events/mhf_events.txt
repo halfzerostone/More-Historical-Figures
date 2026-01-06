@@ -1994,7 +1994,26 @@ mhf_events.24 = {
 			}
 			30 = {
 				root = {
-					
+					create_treaty = {
+			name = crimean_treaty
+			first_country = c:RUS
+			second_country = c:RUS
+			is_draft = no
+			entered_into_force_on = 1836.10.15
+			binding_period = {
+				years = 10
+			}
+			articles_to_create = {
+				{
+					article = money_transfer
+					source_country = c:TUR
+					target_country = c:RUS
+					inputs = {
+						{quantity = 5000}
+					}
+				}
+			}
+		}
 				}
 			}
 		}
