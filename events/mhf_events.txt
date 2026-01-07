@@ -1976,9 +1976,8 @@ mhf_events.24 = {
 			country = scope:turkey_scope
 			value = -30
 		}
-		}
 		random_list = {
-			70 = {
+			70 = { # 아직 미작동
 				root = {
 					create_diplomatic_play = {
 						name = crimean_war
@@ -1991,7 +1990,7 @@ mhf_events.24 = {
 						target_country = c:TUR
 					}
 				}
-			}
+			}}
 			30 = {
 				root = {
 					create_treaty = {
@@ -2012,10 +2011,16 @@ mhf_events.24 = {
 						{quantity = 5000}
 					}
 				}
+				{ 
+					article = trade_privilege
+					source_country = c:TUR
+					target_country = c:RUS
+				}
 			}
 		}
 				}
 			}
 		}
-	}}
-}
+	}
+		}
+		}
